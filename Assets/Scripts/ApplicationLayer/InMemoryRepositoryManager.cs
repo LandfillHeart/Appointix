@@ -9,7 +9,21 @@ namespace Appointix.ApplicationLayer
 	/// </summary>
 	public class InMemoryRepositoryManager : IRepositoryManager
 	{
-		#region IRepositoryManager
+		#region IRepositoryManager - Events
+		public event Action<List<Patient>> OnPatientsLoaded;
+		public event Action<List<Doctor>> OnDoctorsLoaded;
+		public event Action<List<Appointment>> OnAppointmentsLoaded;
+
+		public event Action<Patient> OnPatientCreated;
+		public event Action<Doctor> OnDoctorCreated;
+		public event Action<Appointment> OnAppointmentsCreated;
+		
+		public event Action OnPatientDeleted;
+		public event Action OnDoctorDeleted;
+		public event Action OnAppointmentDeleted;
+		#endregion
+
+		#region IRepositoryManager - CRUD Functions
 		#region Create
 		public void CreateAppointment(int fk_doctorID, int fk_clientID, DateTime startDate)
 		{
@@ -80,7 +94,6 @@ namespace Appointix.ApplicationLayer
 		}
 		#endregion
 		#endregion
-	
-		
+
 	}
 }

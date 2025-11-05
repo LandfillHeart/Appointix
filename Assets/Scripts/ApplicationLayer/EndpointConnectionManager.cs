@@ -1,5 +1,6 @@
 using Appointix.Domain.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,21 @@ namespace Appointix.ApplicationLayer
 	/// </summary>
 	public class EndpointConnectionManager : IRepositoryManager
 	{
-		#region IRepositoryManager
+		#region IRepositoryManager - Events
+		public event Action<List<Patient>> OnPatientsLoaded;
+		public event Action<List<Doctor>> OnDoctorsLoaded;
+		public event Action<List<Appointment>> OnAppointmentsLoaded;
+
+		public event Action<Patient> OnPatientCreated;
+		public event Action<Doctor> OnDoctorCreated;
+		public event Action<Appointment> OnAppointmentsCreated;
+		
+		public event Action OnPatientDeleted;
+		public event Action OnDoctorDeleted;
+		public event Action OnAppointmentDeleted;
+		#endregion
+
+		#region IRepositoryManager - CRUD Functions
 		#region Create
 		public void CreateAppointment(int fk_doctorID, int fk_clientID, DateTime startDate)
 		{
@@ -84,6 +99,28 @@ namespace Appointix.ApplicationLayer
 		#endregion
 
 		#region Unity Web Requests
+		#region Create
+		private IEnumerator CreateAppointment_DB(Appointment newAppointment)
+		{
+			yield break;
+		}
+
+		private IEnumerator CreateDoctor_DB(Doctor newDoctor)
+		{
+			yield break;
+		}
+
+		private IEnumerator CreatePatient_DB(Patient newPatient)
+		{
+			yield break;
+		}
+		#endregion
+		#region Read
+		private IEnumerator ReadAllByClient_DB(int clientID)
+		{
+			yield break;
+		}
+		#endregion
 		#endregion
 
 	}
