@@ -1,15 +1,13 @@
-using Appointix.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Appointix.ApplicationLayer
 {
 	/// <summary>
-	/// Singleton that communicates with the JS Endpoint to interact with the MySQL Database
-	/// Extends IRepositoryManager to allow Dependency Injection / Astraction between using data from a Database or Mock data in Memory
+	/// Singleton to allow CRUD operations on mock data, given when a MySQL database is not available
+	/// The data isn't persistend, but it allows the project to run and demonstrate functionality without needing to setup MySQL services on the user's computer
 	/// </summary>
-	public class EndpointConnectionManager : IRepositoryManager
+	public class InMemoryRepositoryManager : IRepositoryManager
 	{
 		#region IRepositoryManager
 		#region Create
@@ -82,10 +80,7 @@ namespace Appointix.ApplicationLayer
 		}
 		#endregion
 		#endregion
-
-		#region Unity Web Requests
-		#endregion
-
+	
+		
 	}
-
 }
