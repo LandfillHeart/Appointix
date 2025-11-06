@@ -20,12 +20,14 @@ namespace Appointix.UnityUtilities
 
 		public void ReadPatientsFromRepo()
 		{
+			/*
 			Patient patientCache; 
 			for(int i = 1; i < 300; i++)
 			{
 				patientCache = repoManager.ReadPatient(i);
 				Debug.Log($"{patientCache.ID} - {patientCache.Name} - {patientCache.Surname} - {patientCache.Email} - {patientCache.PhoneNumber} ");
 			}
+			*/
 		}
 	}
 }

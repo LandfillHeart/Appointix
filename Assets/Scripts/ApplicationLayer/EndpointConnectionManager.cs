@@ -43,6 +43,8 @@ namespace Appointix.ApplicationLayer
 		public event Action OnAppointmentDeleted;
 		#endregion
 
+		private static string baseUri = "http://localhost:3000/api";
+
 		#region IRepositoryManager - CRUD Functions
 		#region Create
 		public void CreateAppointment(int fk_doctorID, int fk_clientID, DateTime startDate)
@@ -83,7 +85,7 @@ namespace Appointix.ApplicationLayer
 
 		public void ReadPatient(int id)
 		{
-			throw new NotImplementedException();
+			StartCoroutine(ReadPatient_DB(id));
 		}
 		#endregion
 		#region Update
