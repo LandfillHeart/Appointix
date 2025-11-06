@@ -98,3 +98,12 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 /Assets/Scripts/BackEnd/node_modules
+
+# Node Modules
+/BackEnd/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+/BackEnd/node_modules
