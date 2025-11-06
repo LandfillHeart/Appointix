@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS dottore (
     telefono VARCHAR(20) DEFAULT "081 5434 60",        -- Numero di telefono di default
     citta VARCHAR(50),                           -- Città di lavoro o sede del medico
     durata INT DEFAULT 30,                       -- Durata media di un appuntamento (in minuti)
-    giorniDisponibili VARCHAR(255) DEFAULT 'LUN,MAR,MER,GIO,VEN',   -- Giorni disponibili (es. 'Lun,Mar,Mer')
+    giorniDisponibili VARCHAR(255) DEFAULT "Lun,Mar,Mer,Gio,Ven",   -- Giorni disponibili (es. 'Lun,Mar,Mer')
     orarioInizio TIME DEFAULT '09:00:00',        -- Inizio orario di lavoro
     orarioFine TIME DEFAULT '18:00:00'           -- Fine orario di lavoro
 ) ENGINE=InnoDB;                                 -- InnoDB: supporta transazioni e foreign key
@@ -136,24 +136,11 @@ BEGIN
 END//
 DELIMITER ;
 
--- === MOK ===
-
--- Dottori mock
-INSERT INTO dottore (nome, cognome, specializzazione, citta)
-VALUES
-('Luca', 'Verdi', 'Cardiologo', 'Milano'),
-('Chiara', 'Rossi', 'Dermatologa', 'Roma'),
-('Andrea', 'Bianchi', 'Neurologo', 'Torino');
-
--- Pazienti mock
-INSERT INTO paziente (nome, cognome, email, telefono)
-VALUES
-('Fabio', 'Di Marco', 'fabio@test.com', '3400000001'),
-('Sara', 'Conti', 'sara@test.com', '3400000002'),
-('Giorgio', 'Russo', 'giorgio@test.com', '3400000003');
-
 -- === PROVA  DOTTORE ===
-SELECT * FROM dottore;
+SELECT * FROM dottore ORDER BY id DESC;
 
 -- === PROVA PAZIENTE ===
-SELECT * FROM paziente;
+SELECT * FROM paziente ORDER BY id DESC;
+
+-- === PROVA LOGIN ===
+SELECT * FROM login ORDER BY id DESC;
