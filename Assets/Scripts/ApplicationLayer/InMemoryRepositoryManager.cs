@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Appointix.ApplicationLayer
 {
@@ -9,6 +10,37 @@ namespace Appointix.ApplicationLayer
 	/// </summary>
 	public class InMemoryRepositoryManager : IRepositoryManager
 	{
+		#region Singleton
+		private static InMemoryRepositoryManager instance;
+		public static InMemoryRepositoryManager Instance
+		{
+			get
+			{
+				if(instance == null)
+				{
+					instance = new InMemoryRepositoryManager();
+				}
+				return instance;
+			}
+		}
+		private InMemoryRepositoryManager() 
+		{
+			patientsJsonText = AppContext.Instance.patientsJson.text;
+			LoadPatients();
+		}
+		#endregion
+
+		private string patientsJsonText;
+
+		private void LoadPatients()
+		{
+			List<Patient> patientsList = JsonHelper.GetPatientsFromJson(patientsJsonText);
+			foreach (Patient patient in patientsList)
+			{
+				allPatients.Add(patient.ID, patient);
+			}
+		}
+
 		#region IRepositoryManager - Events
 		public event Action<List<Patient>> OnPatientsLoaded;
 		public event Action<List<Doctor>> OnDoctorsLoaded;
@@ -22,6 +54,10 @@ namespace Appointix.ApplicationLayer
 		public event Action OnDoctorDeleted;
 		public event Action OnAppointmentDeleted;
 		#endregion
+
+		private Dictionary<int, Patient> allPatients = new();
+		private Dictionary<int, Doctor> allDoctors = new();
+		private Dictionary<int, Appointment> allAppointments = new();
 
 		#region IRepositoryManager - CRUD Functions
 		#region Create
@@ -63,7 +99,7 @@ namespace Appointix.ApplicationLayer
 
 		public Patient ReadPatient(int id)
 		{
-			throw new NotImplementedException();
+			return allPatients[id];
 		}
 		#endregion
 		#region Update
@@ -94,6 +130,7 @@ namespace Appointix.ApplicationLayer
 		}
 		#endregion
 		#endregion
+
 
 	}
 }

@@ -12,6 +12,22 @@ namespace Appointix.ApplicationLayer
 	/// </summary>
 	public class EndpointConnectionManager : IRepositoryManager
 	{
+		#region Singleton
+		private static EndpointConnectionManager instance;
+		public static EndpointConnectionManager Instance
+		{
+			get
+			{
+				if(instance == null)
+				{
+					instance = new EndpointConnectionManager();
+				}
+				return instance;
+			}
+		}
+		private EndpointConnectionManager() { }
+		#endregion
+
 		#region IRepositoryManager - Events
 		public event Action<List<Patient>> OnPatientsLoaded;
 		public event Action<List<Doctor>> OnDoctorsLoaded;
@@ -117,6 +133,52 @@ namespace Appointix.ApplicationLayer
 		#endregion
 		#region Read
 		private IEnumerator ReadAllByClient_DB(int clientID)
+		{
+			yield break;
+		}
+
+		private IEnumerator ReadAllByDoctor_DB(int doctorID)
+		{
+			yield break;
+		}
+
+		private IEnumerator ReadByAppointmentID_DB(int appointmentID)
+		{
+			yield break;
+		}
+
+		private IEnumerator ReadDoctor_DB(int id)
+		{
+			yield break;
+		}
+
+		private IEnumerator ReadPatient_DB(int id)
+		{
+			yield break;
+		}
+		#endregion
+		#region Update
+		private IEnumerator UpdateDoctor_DB(int id, Doctor newData)
+		{
+			yield break;
+		}
+
+		private IEnumerator UpdatePatient_DB(int id, Patient newData)
+		{
+			yield break;
+		}
+		#endregion
+		#region Delete
+		private IEnumerator DeleteAppointment_DB(int appointmentID)
+		{
+			yield break;
+		}
+		private IEnumerator DeleteDoctor_DB(int id) 
+		{ 
+			yield break;
+		}
+
+		private IEnumerator DeletePatient_DB(int id)
 		{
 			yield break;
 		}
