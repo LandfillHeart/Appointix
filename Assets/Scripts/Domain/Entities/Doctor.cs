@@ -12,5 +12,6 @@ public class Doctor
 	public string City;
 	public int AppointmentDurationInMinutes;
 	public string WeekDaysAvailable;
-	public TimeSpan AvailableHours;
+	public TimeSpan InHours;
+	public TimeSpan FnHours;
 }

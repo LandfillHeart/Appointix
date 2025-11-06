@@ -63,43 +63,142 @@ namespace Appointix.ApplicationLayer
 		#region Create
 		public void CreateAppointment(int fk_doctorID, int fk_clientID, DateTime startDate)
 		{
-			throw new NotImplementedException();
+			List<Appointment> appointments = new List<Appointment>();
+			// Verifica se esiste già un appuntamento con gli stessi dati
+			bool alreadyExists = appointments.Any(a =>
+			a.FK_Doctor_ID == fk_doctorID &&
+			a.FK_Patient_ID == fk_clientID &&
+			a.StartDateTime == startDate
+			);
+
+			if (alreadyExists)
+			{
+				print("⚠️ L'appuntamento esiste già.");
+			}
+			else
+			{
+				// Se non esiste, lo aggiungo
+				appointments.Add(new Appointment
+				{
+					DoctorID = fk_doctorID,
+					ClientID = fk_clientID,
+					StartDate = startDate
+				});
+
+				print("✅ Nuovo appuntamento creato.");
+			}
+			OnAppointmentsCreated?.Invoke(appointments);
+			
 		}
 
-		public void CreateDoctor(string name, string surname, string specialization, string email, string phoneNumber, string city, int appointmentDurationInMinutes, string weekDaysAvailable, TimeSpan availableHours)
-		{
-			throw new NotImplementedException();
-		}
+		public void CreateDoctor(string name, string surname, string specialization, string email, string phoneNumber, string city, int appointmentDurationInMinutes, string weekDaysAvailable, TimeSpan inHours, TimeSpan fnHours)
+        {
+            List<Doctor> doctors = new List<Doctor>();
+			// Verifica se esiste già un dottore con gli stessi attributi
+			bool alreadyExists = doctors.Any(a =>
+			a.Email == email
+			);
+
+			if (alreadyExists)
+			{
+				print("⚠️ Il dottore gia esiste.");
+			}
+			else
+			{
+				// Se non esiste, lo aggiungo
+				doctors.Add(new Doctor
+				{
+					Name = name,
+					Surname = surname,
+					Specialization = specialization,
+					Email = email,
+					PhoneNumber = phoneNumber,
+					City = city,
+					AppointmentDurationInMinutes = appointmentDurationInMinutes,
+					WeekDaysAvailable = weekDaysAvailable,
+					InHours = inHours,
+					FnHours = fnHours
+				});
+
+				print("✅ Nuovo dottore creato.");
+			}
+			OnDoctorCreated?.Invoke(doctors);
+        }
 
 		public void CreatePatient(string name, string surname, string email, string phoneNumber)
 		{
-			throw new NotImplementedException();
+			List<Patient> patients = new List<Patient>();
+			// Verifica se esiste già un paziente con gli stessi attributi
+			bool alreadyExists = patients.Any(a =>
+			a.Email == email
+			);
+
+			if (alreadyExists)
+			{
+				print("⚠️ Il paziente gia esiste.");
+			}
+			else
+			{
+				// Se non esiste, lo aggiungo
+				patients.Add(new Patient
+                {
+                	Name = name,
+					Surname = surname,
+					Email = email,
+					PhoneNumber = phoneNumber
+                });
+
+				print("✅ Nuovo paziente creato.");
+			}
+			OnPatientCreated?.Invoke(patients);
 		}
 		#endregion
 		#region Read
 		public void ReadAllByClient(int clientID)
 		{
-			throw new NotImplementedException();
+			List<Appointment> appointments = new List<Appointment>();
+			foreach(Appointment app in allAppointments.Values)
+            {
+                if (app.FK_Patient_ID == clientID)
+                {
+					appointments.Add(app);
+                }
+            }
+			OnAppointmentsLoaded?.Invoke(appointments);
 		}
 
 		public void ReadAllByDoctor(int doctorID)
 		{
-			throw new NotImplementedException();
+			List<Appointment> appointments = new List<Appointment>();
+			foreach(Appointment app in allAppointments.Values)
+            {
+                if (app.FK_Doctor_ID == doctorID)
+                {
+					appointments.Add(app);
+                }
+            }
+			OnAppointmentsLoaded?.Invoke(appointments);
 		}
 
 		public void ReadByAppointmentID(int appointmentID)
 		{
-			throw new NotImplementedException();
+			List<Appointment> appointments = new List<Appointment>();
+			appointments.Add(allAppointments[appointmentID]);
+			OnAppointmentsLoaded?.Invoke(appointments);
 		}
 
 		public void ReadDoctor(int id)
 		{
-			throw new NotImplementedException();
+			List<Doctor> doctors = new List<Doctor>();
+			doctors.Add(allDoctors[id]);
+			OnDoctorsLoaded?.Invoke(doctors);
 		}
 
 		public void ReadPatient(int id)
 		{
-			// return allPatients[id];
+			List<Patient> patients = new List<Patient>();
+			patients.Add(allPatients[id]);
+			OnPatientsLoaded?.Invoke(patients);
 		}
 		#endregion
 		#region Update
