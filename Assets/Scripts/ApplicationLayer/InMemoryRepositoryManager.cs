@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Appointix.ApplicationLayer
 {
@@ -63,50 +64,51 @@ namespace Appointix.ApplicationLayer
 		#region Create
 		public void CreateAppointment(int fk_doctorID, int fk_clientID, DateTime startDate)
 		{
-			List<Appointment> appointments = new List<Appointment>();
+			Appointment appointment = new Appointment();
 			// Verifica se esiste già un appuntamento con gli stessi dati
-			bool alreadyExists = appointments.Any(a =>
-			a.FK_Doctor_ID == fk_doctorID &&
-			a.FK_Patient_ID == fk_clientID &&
-			a.StartDateTime == startDate
+			bool alreadyExists = allAppointments.Values.Any(a =>
+				a.FK_Doctor_ID == fk_doctorID &&
+				a.FK_Patient_ID == fk_clientID &&
+				a.StartDateTime == startDate
 			);
 
 			if (alreadyExists)
 			{
-				print("⚠️ L'appuntamento esiste già.");
+	
+				Debug.Log("⚠️ L'appuntamento esiste già.");
 			}
 			else
 			{
 				// Se non esiste, lo aggiungo
-				appointments.Add(new Appointment
+				appointment = (new Appointment
 				{
-					DoctorID = fk_doctorID,
-					ClientID = fk_clientID,
-					StartDate = startDate
+					FK_Doctor_ID = fk_doctorID,
+					FK_Patient_ID = fk_clientID,
+					StartDateTime = startDate
 				});
 
-				print("✅ Nuovo appuntamento creato.");
+				Debug.Log("✅ Nuovo appuntamento creato.");
 			}
-			OnAppointmentsCreated?.Invoke(appointments);
+			OnAppointmentsCreated?.Invoke(appointment);
 			
 		}
 
 		public void CreateDoctor(string name, string surname, string specialization, string email, string phoneNumber, string city, int appointmentDurationInMinutes, string weekDaysAvailable, TimeSpan inHours, TimeSpan fnHours)
         {
-            List<Doctor> doctors = new List<Doctor>();
+            Doctor doctor = new Doctor();
 			// Verifica se esiste già un dottore con gli stessi attributi
-			bool alreadyExists = doctors.Any(a =>
-			a.Email == email
+			bool alreadyExists = allDoctors.Values.Any(a =>
+				a.Email == email
 			);
 
 			if (alreadyExists)
 			{
-				print("⚠️ Il dottore gia esiste.");
+				Debug.Log("⚠️ Il dottore gia esiste.");
 			}
 			else
 			{
 				// Se non esiste, lo aggiungo
-				doctors.Add(new Doctor
+				doctor = (new Doctor
 				{
 					Name = name,
 					Surname = surname,
@@ -120,27 +122,27 @@ namespace Appointix.ApplicationLayer
 					FnHours = fnHours
 				});
 
-				print("✅ Nuovo dottore creato.");
+				Debug.Log("✅ Nuovo dottore creato.");
 			}
-			OnDoctorCreated?.Invoke(doctors);
+			OnDoctorCreated?.Invoke(doctor);
         }
 
 		public void CreatePatient(string name, string surname, string email, string phoneNumber)
 		{
-			List<Patient> patients = new List<Patient>();
+			Patient patient = new Patient();
 			// Verifica se esiste già un paziente con gli stessi attributi
-			bool alreadyExists = patients.Any(a =>
+			bool alreadyExists = allPatients.Values.Any(a =>
 			a.Email == email
 			);
 
 			if (alreadyExists)
 			{
-				print("⚠️ Il paziente gia esiste.");
+				Debug.Log("⚠️ Il paziente gia esiste.");
 			}
 			else
 			{
 				// Se non esiste, lo aggiungo
-				patients.Add(new Patient
+				patient = (new Patient
                 {
                 	Name = name,
 					Surname = surname,
@@ -148,9 +150,9 @@ namespace Appointix.ApplicationLayer
 					PhoneNumber = phoneNumber
                 });
 
-				print("✅ Nuovo paziente creato.");
+				Debug.Log("✅ Nuovo paziente creato.");
 			}
-			OnPatientCreated?.Invoke(patients);
+			OnPatientCreated?.Invoke(patient);
 		}
 		#endregion
 		#region Read

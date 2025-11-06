@@ -108,7 +108,7 @@ namespace Appointix.ApplicationLayer
         /// <summary>
         /// Avvia la creazione di un nuovo dottore nel database.
         /// </summary>
-        public void CreateDoctor(string name, string surname, string specialization, string email, string phoneNumber, string city, int appointmentDurationInMinutes, string weekDaysAvailable, TimeSpan availableHours)
+        public void CreateDoctor(string name, string surname, string specialization, string email, string phoneNumber, string city, int appointmentDurationInMinutes, string weekDaysAvailable, TimeSpan inHours, TimeSpan fnHours)
         {
             Doctor newDoctor = new Doctor
             {
@@ -120,7 +120,8 @@ namespace Appointix.ApplicationLayer
                 City = city,
                 AppointmentDurationInMinutes = appointmentDurationInMinutes,
                 WeekDaysAvailable = weekDaysAvailable,
-                AvailableHours = availableHours
+                InHours = inHours,
+				FnHours = fnHours
             };
             StartCoroutine(CreateDoctor_DB(newDoctor));
         }
