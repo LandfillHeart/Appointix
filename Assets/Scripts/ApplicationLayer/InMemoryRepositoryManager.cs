@@ -51,6 +51,10 @@ namespace Appointix.ApplicationLayer
 		public event Action<Doctor> OnDoctorCreated;
 		public event Action<Appointment> OnAppointmentsCreated;
 		
+		public event Action<Patient> OnPatientsUpdate;
+		public event Action<Doctor> OnDoctorsUpdate;
+		public event Action<Appointment> OnAppointmentsUpdate;
+
 		public event Action OnPatientDeleted;
 		public event Action OnDoctorDeleted;
 		public event Action OnAppointmentDeleted;

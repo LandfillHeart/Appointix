@@ -79,6 +79,20 @@ namespace Appointix.ApplicationLayer
         /// Evento invocato dopo l'eliminazione di un appuntamento dal database.
         /// </summary>
         public event Action OnAppointmentDeleted;
+
+        /// <summary>
+        /// Evento invocato dopo l'aggiornamento di un paziente dal database.
+        /// </summary>
+        public event Action<Patient> OnPatientsUpdate;
+        /// <summary>
+        /// Evento invocato dopo l'aggiornamento di un dottore dal database.
+        /// </summary>
+		public event Action<Doctor> OnDoctorsUpdate;
+        /// <summary>
+        /// Evento invocato dopo l'aggiornamento di un appuntamento dal database.
+        /// </summary>
+        public event Action<Appointment> OnAppointmentsUpdate;
+        
         #endregion
 
         /// <summary>
