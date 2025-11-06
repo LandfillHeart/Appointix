@@ -229,7 +229,13 @@ app.post('/api/login', async (req, res) => {
 // Attiva il server Express in ascolto sulla porta 3000
 // Accessibile su http://localhost:3000
 // ============================
-
-app.listen(3000, () => {
-  console.log('🚀 Server attivo su http://localhost:3000');
+// all'avvio del server scrive delle informative in console
+app.listen(port, () => {
+  console.log(`🚀 Server in ascolto su http://localhost:${port}`);
+  console.log(`Endpoints disponibili:`);
+  console.log(`- GET /api/dottori - Ottieni tutte le dottori`);
+  console.log(`- GET /api/pazienti - Ottieni tutte le pazienti`);
+  console.log(`- GET /api/prenotazioni - Ottieni tutte le prenotazioni`);
+  console.log(`- POST /api/register - Crea utenza, P o D, e registra`);
+  console.log(`- POST /api/login - Connessione con utenza registrata`);
 });

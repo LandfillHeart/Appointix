@@ -1,0 +1,37 @@
+*Esempio di chiamate JSON*
+
+Paziente:
+{
+  "username": "fabiom",
+  "password": "123456",
+  "ruolo": "P",
+  "nome": "Fabio",
+  "cognome": "Di Marco",
+  "email": "fabio@test.com",
+  "telefono": "3400000001"
+}
+
+Dottore:
+{
+  "username": "lucav",
+  "password": "123456",
+  "ruolo": "D",
+  "nome": "Luca",
+  "cognome": "Verdi",
+  "specializzazione": "Cardiologo",
+  "email": "luca@clinic.it",
+  "telefono": "081 123456",
+  "citta": "Milano"
+}
+
+JSON – Login Paziente:
+{
+  "username": "fabiom",
+  "password": "123456"
+}
+
+JSON – Login Dottore:
+{
+  "username": "lucav",
+  "password": "123456"
+}
