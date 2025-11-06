@@ -259,7 +259,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="newAppointment">L'oggetto appuntamento da serializzare e inviare.</param>
         private IEnumerator CreateAppointment_DB(Appointment newAppointment)
         {
-            string uri = $"{baseUri}/appointments";
+            string uri = $"{baseUri}/prenotazioni";
             string jsonData = JsonHelper.ToJson(newAppointment);
 
             using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
@@ -285,7 +285,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="newDoctor">L'oggetto dottore da serializzare e inviare.</param>
         private IEnumerator CreateDoctor_DB(Doctor newDoctor)
         {
-            string uri = $"{baseUri}/doctors";
+            string uri = $"{baseUri}/dottori";
             string jsonData = JsonHelper.ToJson(newDoctor);
 
             using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
@@ -311,7 +311,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="newPatient">L'oggetto paziente da serializzare e inviare.</param>
         private IEnumerator CreatePatient_DB(Patient newPatient)
         {
-            string uri = $"{baseUri}/patients";
+            string uri = $"{baseUri}/pazienti";
             string jsonData = JsonHelper.ToJson(newPatient);
 
             using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
@@ -338,7 +338,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="clientID">L'ID del cliente.</param>
         private IEnumerator ReadAllByClient_DB(int clientID)
         {
-            string uri = $"{baseUri}/appointments/client/{clientID}";
+            string uri = $"{baseUri}/prenotazioni/pazienti/{clientID}";
             using (UnityWebRequest request = UnityWebRequest.Get(uri))
             {
                 yield return request.SendWebRequest();
@@ -361,7 +361,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="doctorID">L'ID del dottore.</param>
         private IEnumerator ReadAllByDoctor_DB(int doctorID)
         {
-            string uri = $"{baseUri}/appointments/doctor/{doctorID}";
+            string uri = $"{baseUri}/prenotazioni/dottori/{doctorID}";
             using (UnityWebRequest request = UnityWebRequest.Get(uri))
             {
                 yield return request.SendWebRequest();
@@ -384,7 +384,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="appointmentID">L'ID dell'appuntamento.</param>
         private IEnumerator ReadByAppointmentID_DB(int appointmentID)
         {
-            string uri = $"{baseUri}/appointments/{appointmentID}";
+            string uri = $"{baseUri}/prenotazioni/{appointmentID}";
             using (UnityWebRequest request = UnityWebRequest.Get(uri))
             {
                 yield return request.SendWebRequest();
@@ -407,7 +407,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="id">L'ID del dottore.</param>
         private IEnumerator ReadDoctor_DB(int id)
         {
-            string uri = $"{baseUri}/doctors/{id}";
+            string uri = $"{baseUri}/dottori/{id}";
             using (UnityWebRequest request = UnityWebRequest.Get(uri))
             {
                 yield return request.SendWebRequest();
@@ -430,9 +430,10 @@ namespace Appointix.ApplicationLayer
         /// <param name="id">L'ID del paziente.</param>
         private IEnumerator ReadPatient_DB(int id)
         {
-            string uri = $"{baseUri}/patients/{id}";
+            string uri = $"{baseUri}/pazienti/{id}";
             using (UnityWebRequest request = UnityWebRequest.Get(uri))
-            {
+			{
+				request.SetRequestHeader("Content-Type", "application/json");
                 yield return request.SendWebRequest();
 
                 if (request.result != UnityWebRequest.Result.Success)
@@ -455,7 +456,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="newData">L'oggetto dottore con i nuovi dati.</param>
         private IEnumerator UpdateDoctor_DB(int id, Doctor newData)
         {
-            string uri = $"{baseUri}/doctors/{id}";
+            string uri = $"{baseUri}/dottori/{id}";
             string jsonData = JsonHelper.ToJson(newData);
 
             using (UnityWebRequest request = CreateJsonRequest(uri, "PUT", jsonData))
@@ -480,7 +481,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="newData">L'oggetto paziente con i nuovi dati.</param>
         private IEnumerator UpdatePatient_DB(int id, Patient newData)
         {
-            string uri = $"{baseUri}/patients/{id}";
+            string uri = $"{baseUri}/pazienti/{id}";
             string jsonData = JsonHelper.ToJson(newData);
 
             using (UnityWebRequest request = CreateJsonRequest(uri, "PUT", jsonData))
@@ -505,7 +506,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="appointmentID">L'ID dell'appuntamento da eliminare.</param>
         private IEnumerator DeleteAppointment_DB(int appointmentID)
         {
-            string uri = $"{baseUri}/appointments/{appointmentID}";
+            string uri = $"{baseUri}/prenotazioni/{appointmentID}";
             using (UnityWebRequest request = UnityWebRequest.Delete(uri))
             {
                 yield return request.SendWebRequest();
@@ -528,7 +529,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="id">L'ID del dottore da eliminare.</param>
         private IEnumerator DeleteDoctor_DB(int id)
         {
-            string uri = $"{baseUri}/doctors/{id}";
+            string uri = $"{baseUri}/dottori/{id}";
             using (UnityWebRequest request = UnityWebRequest.Delete(uri))
             {
                 yield return request.SendWebRequest();
@@ -545,28 +546,58 @@ namespace Appointix.ApplicationLayer
             }
         }
 
-        /// <summary>
-        /// Coroutina che esegue la richiesta DELETE per eliminare un paziente.
-        /// </summary>
-        /// <param name="id">L'ID del paziente da eliminare.</param>
-        private IEnumerator DeletePatient_DB(int id)
-        {
-            string uri = $"{baseUri}/patients/{id}";
-            using (UnityWebRequest request = UnityWebRequest.Delete(uri))
-            {
-                yield return request.SendWebRequest();
+		/// <summary>
+		/// Coroutina che esegue la richiesta DELETE per eliminare un paziente.
+		/// </summary>
+		/// <param name="id">L'ID del paziente da eliminare.</param>
+		private IEnumerator DeletePatient_DB(int id)
+		{
+			string uri = $"{baseUri}/pazienti/{id}";
+			using (UnityWebRequest request = UnityWebRequest.Delete(uri))
+			{
+				yield return request.SendWebRequest();
 
-                if (request.result != UnityWebRequest.Result.Success)
-                {
-                    Debug.LogError($"Error Deleting Patient: {request.error}");
-                }
-                else
-                {
-                    Debug.Log("Patient Deleted!");
-                    OnPatientDeleted?.Invoke();
-                }
-            }
-        }
+				if (request.result != UnityWebRequest.Result.Success)
+				{
+					Debug.LogError($"Error Deleting Patient: {request.error}");
+				}
+				else
+				{
+					Debug.Log("Patient Deleted!");
+					OnPatientDeleted?.Invoke();
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Coroutina pubblica per testare la connessione all'API.
+		/// Esegue una semplice richiesta GET e invoca un callback con il risultato.
+		/// </summary>
+		/// <param name="callback">Azione da invocare con 'true' se la connessione ha successo, altrimenti 'false'.</param>
+		public IEnumerator TestConnection_DB(Action<bool> callback)
+		{
+			// Usiamo un endpoint semplice (es. /doctors) per il test
+			string uri = $"{baseUri}/dottori"; 
+
+			using (UnityWebRequest request = UnityWebRequest.Get(uri))
+			{
+				request.timeout = 5; // 5 secondi di timeout
+				
+				yield return request.SendWebRequest();
+
+				// Controlla se la richiesta ha avuto successo (es. 200 OK)
+				if (request.result == UnityWebRequest.Result.Success)
+				{
+					Debug.Log("DB Connection Test SUCCEEDED.");
+					callback?.Invoke(true); // Successo!
+				}
+				else
+				{
+					Debug.LogWarning($"DB Connection Test FAILED: {request.error}");
+					callback?.Invoke(false); // Fallito
+				}
+			}
+		}
         #endregion
     }
 }
