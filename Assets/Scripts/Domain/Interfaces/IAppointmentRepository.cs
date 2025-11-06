@@ -8,9 +8,9 @@ namespace Appointix.Domain.Interfaces
 	{
 		public void CreateAppointment(int fk_doctorID, int fk_clientID, DateTime startDate); // end date defined by doctor.appointmentDurationInMinutes
 
-		public Appointment ReadByAppointmentID(int appointmentID);
-		public List<Appointment> ReadAllByClient(int clientID);
-		public List<Appointment> ReadAllByDoctor(int doctorID);
+		public void ReadByAppointmentID(int appointmentID);
+		public void ReadAllByClient(int clientID);
+		public void ReadAllByDoctor(int doctorID);
 
 		public void DeleteAppointment(int appointmentID);
 	}

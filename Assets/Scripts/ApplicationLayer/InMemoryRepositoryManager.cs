@@ -77,29 +77,29 @@ namespace Appointix.ApplicationLayer
 		}
 		#endregion
 		#region Read
-		public List<Appointment> ReadAllByClient(int clientID)
+		public void ReadAllByClient(int clientID)
 		{
 			throw new NotImplementedException();
 		}
 
-		public List<Appointment> ReadAllByDoctor(int doctorID)
+		public void ReadAllByDoctor(int doctorID)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Appointment ReadByAppointmentID(int appointmentID)
+		public void ReadByAppointmentID(int appointmentID)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Doctor ReadDoctor(int id)
+		public void ReadDoctor(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Patient ReadPatient(int id)
+		public void ReadPatient(int id)
 		{
-			return allPatients[id];
+			// return allPatients[id];
 		}
 		#endregion
 		#region Update
