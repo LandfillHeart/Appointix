@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS dottore (
     id INT AUTO_INCREMENT PRIMARY KEY,           -- Identificativo univoco del dottore
     nome VARCHAR(50) NOT NULL,                   -- Nome del dottore
     cognome VARCHAR(50) NOT NULL,                -- Cognome del dottore
-    specializzazione VARCHAR(100) NOT NULL,      -- Specializzazione medica (es. Cardiologo)
+    specializzazione VARCHAR(100) NOT NULL DEFAULT "Base",      -- Specializzazione medica (es. Cardiologo)
     email VARCHAR(50) DEFAULT "replay@appointix.com",  -- Email predefinita se non specificata
     telefono VARCHAR(20) DEFAULT "081 5434 60",        -- Numero di telefono di default
     citta VARCHAR(50),                           -- Città di lavoro o sede del medico
