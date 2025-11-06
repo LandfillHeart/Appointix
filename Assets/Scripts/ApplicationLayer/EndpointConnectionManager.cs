@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Appointix.ApplicationLayer
 {
@@ -10,7 +11,7 @@ namespace Appointix.ApplicationLayer
 	/// Singleton that communicates with the JS Endpoint to interact with the MySQL Database
 	/// Extends IRepositoryManager to allow Dependency Injection / Astraction between using data from a Database or Mock data in Memory
 	/// </summary>
-	public class EndpointConnectionManager : IRepositoryManager
+	public class EndpointConnectionManager : MonoBehaviour, IRepositoryManager
 	{
 		#region Singleton
 		private static EndpointConnectionManager instance;
@@ -60,27 +61,27 @@ namespace Appointix.ApplicationLayer
 		}
 		#endregion
 		#region Read
-		public List<Appointment> ReadAllByClient(int clientID)
+		public void ReadAllByClient(int clientID)
 		{
 			throw new NotImplementedException();
 		}
 
-		public List<Appointment> ReadAllByDoctor(int doctorID)
+		public void ReadAllByDoctor(int doctorID)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Appointment ReadByAppointmentID(int appointmentID)
+		public void ReadByAppointmentID(int appointmentID)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Doctor ReadDoctor(int id)
+		public void ReadDoctor(int id)
 		{
-			throw new NotImplementedException();
+			StartCoroutine(ReadDoctor_DB(id));
 		}
 
-		public Patient ReadPatient(int id)
+		public void ReadPatient(int id)
 		{
 			throw new NotImplementedException();
 		}
@@ -154,6 +155,7 @@ namespace Appointix.ApplicationLayer
 
 		private IEnumerator ReadPatient_DB(int id)
 		{
+			
 			yield break;
 		}
 		#endregion
