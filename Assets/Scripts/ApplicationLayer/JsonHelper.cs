@@ -2,9 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// Si presume che PatientsListWrapper, DoctorsListWrapper,
-// e AppointmentsListWrapper siano definiti in questo namespace
-// o in uno importato.
 namespace Appointix.ApplicationLayer
 {
     /// <summary>
