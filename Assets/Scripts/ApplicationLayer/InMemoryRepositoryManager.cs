@@ -38,7 +38,7 @@ namespace Appointix.ApplicationLayer
 			List<Patient> patientsList = JsonHelper.GetPatientsFromJson(patientsJsonText);
 			foreach (Patient patient in patientsList)
 			{
-				allPatients.Add(patient.ID, patient);
+				allPatients.Add(patient.id, patient);
 			}
 		}
 
@@ -71,9 +71,9 @@ namespace Appointix.ApplicationLayer
 			Appointment appointment = new Appointment();
 			// Verifica se esiste già un appuntamento con gli stessi dati
 			bool alreadyExists = allAppointments.Values.Any(a =>
-				a.FK_Doctor_ID == fk_doctorID &&
-				a.FK_Patient_ID == fk_clientID &&
-				a.StartDateTime == startDate
+				a.idPaziente == fk_doctorID &&
+				a.idDottore == fk_clientID &&
+				a.inizioApp == startDate
 			);
 
 			if (alreadyExists)
@@ -86,9 +86,9 @@ namespace Appointix.ApplicationLayer
 				// Se non esiste, lo aggiungo
 				appointment = (new Appointment
 				{
-					FK_Doctor_ID = fk_doctorID,
-					FK_Patient_ID = fk_clientID,
-					StartDateTime = startDate
+					idPaziente = fk_doctorID,
+					idDottore = fk_clientID,
+					inizioApp = startDate
 				});
 
 				Debug.Log("✅ Nuovo appuntamento creato.");
@@ -102,7 +102,7 @@ namespace Appointix.ApplicationLayer
             Doctor doctor = new Doctor();
 			// Verifica se esiste già un dottore con gli stessi attributi
 			bool alreadyExists = allDoctors.Values.Any(a =>
-				a.Email == email
+				a.email == email
 			);
 
 			if (alreadyExists)
@@ -114,16 +114,16 @@ namespace Appointix.ApplicationLayer
 				// Se non esiste, lo aggiungo
 				doctor = (new Doctor
 				{
-					Name = name,
-					Surname = surname,
-					Specialization = specialization,
-					Email = email,
-					PhoneNumber = phoneNumber,
-					City = city,
-					AppointmentDurationInMinutes = appointmentDurationInMinutes,
-					WeekDaysAvailable = weekDaysAvailable,
-					InHours = inHours,
-					FnHours = fnHours
+					nome = name,
+					cognome = surname,
+					specializzazione = specialization,
+					email = email,
+					telefono = phoneNumber,
+					citta = city,
+					durata = appointmentDurationInMinutes,
+					giorniDisponibili = weekDaysAvailable,
+					orarioInizio = inHours,
+					orarioFine = fnHours
 				});
 
 				Debug.Log("✅ Nuovo dottore creato.");
@@ -136,7 +136,7 @@ namespace Appointix.ApplicationLayer
 			Patient patient = new Patient();
 			// Verifica se esiste già un paziente con gli stessi attributi
 			bool alreadyExists = allPatients.Values.Any(a =>
-			a.Email == email
+			a.email == email
 			);
 
 			if (alreadyExists)
@@ -148,10 +148,10 @@ namespace Appointix.ApplicationLayer
 				// Se non esiste, lo aggiungo
 				patient = (new Patient
                 {
-                	Name = name,
-					Surname = surname,
-					Email = email,
-					PhoneNumber = phoneNumber
+                	nome = name,
+					cognome = surname,
+					email = email,
+					telefono = phoneNumber
                 });
 
 				Debug.Log("✅ Nuovo paziente creato.");
@@ -165,7 +165,7 @@ namespace Appointix.ApplicationLayer
 			List<Appointment> appointments = new List<Appointment>();
 			foreach(Appointment app in allAppointments.Values)
             {
-                if (app.FK_Patient_ID == clientID)
+                if (app.idDottore == clientID)
                 {
 					appointments.Add(app);
                 }
@@ -178,7 +178,7 @@ namespace Appointix.ApplicationLayer
 			List<Appointment> appointments = new List<Appointment>();
 			foreach(Appointment app in allAppointments.Values)
             {
-                if (app.FK_Doctor_ID == doctorID)
+                if (app.idPaziente == doctorID)
                 {
 					appointments.Add(app);
                 }

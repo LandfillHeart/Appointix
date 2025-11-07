@@ -10,7 +10,7 @@ namespace Appointix.UnityUtilities
 
 		public void Start()
 		{
-			AppContext.Instance.OnRepositoryManagerSet += (newManager) => repoManager = newManager;
+			AppContext.Instance.OnRepositoryManagerSet += (newManager) => { repoManager = newManager; repoManager.OnPatientsLoaded += PrintPatients; };
 		}
 
 		public void AppContextGetConnectionDB()
@@ -20,8 +20,17 @@ namespace Appointix.UnityUtilities
 
 		public void ReadPatientsFromRepo()
 		{
+
 			repoManager.ReadPatient(1);
-			
+
 		}
+
+		private void PrintPatients(List<Patient> patients)
+		{
+			foreach (Patient pat in patients)
+			{
+				print($"{pat.id}, {pat.nome}, {pat.cognome}");
+			}
+		} 
 	}
 }

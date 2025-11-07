@@ -3,9 +3,9 @@ using System;
 [Serializable]
 public class Patient
 {
-	public int ID;
-	public string Name;
-	public string Surname;
-	public string Email;
-	public string PhoneNumber;
+	public int id;
+	public string nome;
+	public string cognome;
+	public string email;
+	public string telefono;
 }

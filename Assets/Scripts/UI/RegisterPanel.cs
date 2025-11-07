@@ -1,3 +1,4 @@
+using Appointix.ApplicationLayer;
 using TMPro;
 using UnityEngine;
 
@@ -70,7 +71,8 @@ public class RegisterPanel : MonoBehaviour
 		if (!shouldAttempt) return;
 
 		// 1. try to find the email in the DB to prevent a new account with same email
-		// 2. create into db
+		// 2.
+		AppContext.Instance.RepositoryManager.CreatePatient(name, surname, email, phone);
 	}
 
 	private void ClearAllErrorDisplays()

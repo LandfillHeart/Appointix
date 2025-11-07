@@ -112,9 +112,9 @@ namespace Appointix.ApplicationLayer
         {
             Appointment newAppointment = new Appointment
             {
-                FK_Doctor_ID = fk_doctorID,
-                FK_Patient_ID = fk_clientID,
-                StartDateTime = startDate
+                idPaziente = fk_doctorID,
+                idDottore = fk_clientID,
+                inizioApp = startDate
             };
             StartCoroutine(CreateAppointment_DB(newAppointment));
         }
@@ -126,16 +126,16 @@ namespace Appointix.ApplicationLayer
         {
             Doctor newDoctor = new Doctor
             {
-                Name = name,
-                Surname = surname,
-                Specialization = specialization,
-                Email = email,
-                PhoneNumber = phoneNumber,
-                City = city,
-                AppointmentDurationInMinutes = appointmentDurationInMinutes,
-                WeekDaysAvailable = weekDaysAvailable,
-                InHours = inHours,
-				FnHours = fnHours
+                nome = name,
+                cognome = surname,
+                specializzazione = specialization,
+                email = email,
+                telefono = phoneNumber,
+                citta = city,
+                durata = appointmentDurationInMinutes,
+                giorniDisponibili = weekDaysAvailable,
+                orarioInizio = inHours,
+				orarioFine = fnHours
             };
             StartCoroutine(CreateDoctor_DB(newDoctor));
         }
@@ -147,10 +147,10 @@ namespace Appointix.ApplicationLayer
         {
             Patient newPatient = new Patient
             {
-                Name = name,
-                Surname = surname,
-                Email = email,
-                PhoneNumber = phoneNumber
+                nome = name,
+                cognome = surname,
+                email = email,
+                telefono = phoneNumber
             };
             StartCoroutine(CreatePatient_DB(newPatient));
         }
@@ -326,7 +326,7 @@ namespace Appointix.ApplicationLayer
         /// <param name="newPatient">L'oggetto paziente da serializzare e inviare.</param>
         private IEnumerator CreatePatient_DB(Patient newPatient)
         {
-            string uri = $"{baseUri}/pazienti";
+            string uri = $"{baseUri}/register";
             string jsonData = JsonHelper.ToJson(newPatient);
 
             using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
