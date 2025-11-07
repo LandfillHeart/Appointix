@@ -1,3 +1,4 @@
+using Appointix.Domain;
 using Appointix.Domain.Interfaces;
 using System;
 using System.Collections;
@@ -122,7 +123,7 @@ namespace Appointix.ApplicationLayer
         /// <summary>
         /// Avvia la creazione di un nuovo dottore nel database.
         /// </summary>
-        public void CreateDoctor(string name, string surname, string specialization, string email, string phoneNumber, string city, int appointmentDurationInMinutes, string weekDaysAvailable, TimeSpan inHours, TimeSpan fnHours)
+        public void CreateDoctor(string name, string surname, string specialization, string email, string password, string phoneNumber, string city, int appointmentDurationInMinutes, string weekDaysAvailable, TimeSpan inHours, TimeSpan fnHours)
         {
             Doctor newDoctor = new Doctor
             {
@@ -137,13 +138,13 @@ namespace Appointix.ApplicationLayer
                 orarioInizio = inHours,
 				orarioFine = fnHours
             };
-            StartCoroutine(CreateDoctor_DB(newDoctor));
+            StartCoroutine(CreateDoctor_DB(newDoctor, password));
         }
 
         /// <summary>
         /// Avvia la creazione di un nuovo paziente nel database.
         /// </summary>
-        public void CreatePatient(string name, string surname, string email, string phoneNumber)
+        public void CreatePatient(string name, string surname, string email, string password, string phoneNumber)
         {
             Patient newPatient = new Patient
             {
@@ -152,7 +153,7 @@ namespace Appointix.ApplicationLayer
                 email = email,
                 telefono = phoneNumber
             };
-            StartCoroutine(CreatePatient_DB(newPatient));
+            StartCoroutine(CreatePatient_DB(newPatient, password));
         }
 
         /// <summary>
@@ -298,12 +299,26 @@ namespace Appointix.ApplicationLayer
         /// Coroutina che esegue la richiesta POST per creare un nuovo dottore.
         /// </summary>
         /// <param name="newDoctor">L'oggetto dottore da serializzare e inviare.</param>
-        private IEnumerator CreateDoctor_DB(Doctor newDoctor)
+        private IEnumerator CreateDoctor_DB(Doctor newDoctor, string password)
         {
             string uri = $"{baseUri}/dottori";
-            string jsonData = JsonHelper.ToJson(newDoctor);
+            
 
-            using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
+			RegisterUser newUser = new RegisterUser()
+			{
+				nome = newDoctor.nome,
+				cognome = newDoctor.cognome,
+				username = newDoctor.email,
+				password = password,
+				email = newDoctor.email,
+				ruolo = "D",
+				telefono = newDoctor.telefono,
+				citta = newDoctor.citta,
+				specializzazione = newDoctor.specializzazione,
+			};
+
+			string jsonData = JsonUtility.ToJson(newUser);
+			using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
             {
                 yield return request.SendWebRequest();
 
@@ -324,10 +339,24 @@ namespace Appointix.ApplicationLayer
         /// Coroutina che esegue la richiesta POST per creare un nuovo paziente.
         /// </summary>
         /// <param name="newPatient">L'oggetto paziente da serializzare e inviare.</param>
-        private IEnumerator CreatePatient_DB(Patient newPatient)
+        private IEnumerator CreatePatient_DB(Patient newPatient, string password)
         {
             string uri = $"{baseUri}/register";
-            string jsonData = JsonHelper.ToJson(newPatient);
+			//string jsonData = JsonHelper.ToJson(newPatient);
+			// password, ruolo, nome, cognome, email, telefono,
+			// specializzazione?, citta?, idPaziente, idDottore
+			RegisterUser newUser = new RegisterUser()
+			{
+				nome = newPatient.nome,
+				cognome = newPatient.cognome,
+				username = newPatient.nome + newPatient.cognome + newPatient.email,
+				password = password,
+				email = newPatient.email,
+				ruolo = "P",
+				telefono = newPatient.telefono,
+			};
+
+			string jsonData = JsonUtility.ToJson(newUser);
 
             using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
             {

@@ -97,7 +97,7 @@ namespace Appointix.ApplicationLayer
 			
 		}
 
-		public void CreateDoctor(string name, string surname, string specialization, string email, string phoneNumber, string city, int appointmentDurationInMinutes, string weekDaysAvailable, TimeSpan inHours, TimeSpan fnHours)
+		public void CreateDoctor(string name, string surname, string specialization, string email, string password, string phoneNumber, string city, int appointmentDurationInMinutes, string weekDaysAvailable, TimeSpan inHours, TimeSpan fnHours)
         {
             Doctor doctor = new Doctor();
 			// Verifica se esiste già un dottore con gli stessi attributi
@@ -131,7 +131,7 @@ namespace Appointix.ApplicationLayer
 			OnDoctorCreated?.Invoke(doctor);
         }
 
-		public void CreatePatient(string name, string surname, string email, string phoneNumber)
+		public void CreatePatient(string name, string surname, string email, string password, string phoneNumber)
 		{
 			Patient patient = new Patient();
 			// Verifica se esiste già un paziente con gli stessi attributi

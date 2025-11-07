@@ -72,7 +72,7 @@ public class RegisterPanel : MonoBehaviour
 
 		// 1. try to find the email in the DB to prevent a new account with same email
 		// 2.
-		AppContext.Instance.RepositoryManager.CreatePatient(name, surname, email, phone);
+		AppContext.Instance.RepositoryManager.CreatePatient(name, surname, email, password, phone);
 	}
 
 	private void ClearAllErrorDisplays()
