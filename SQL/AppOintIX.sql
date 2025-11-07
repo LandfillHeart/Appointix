@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS dottore (
     nome VARCHAR(50) NOT NULL,                   -- Nome del dottore
     cognome VARCHAR(50) NOT NULL,                -- Cognome del dottore
     specializzazione VARCHAR(100) NOT NULL DEFAULT "Base",      -- Specializzazione medica (es. Cardiologo)
-    email VARCHAR(50) DEFAULT "replay@appointix.com",  -- Email predefinita se non specificata
+    email VARCHAR(50) UNIQUE NOT NULL,  -- Email OBBLIGATORIA
     telefono VARCHAR(20) DEFAULT "081 5434 60",        -- Numero di telefono di default
     citta VARCHAR(50),                           -- Città di lavoro o sede del medico
     durata INT DEFAULT 30,                       -- Durata media di un appuntamento (in minuti)
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS paziente (
     id INT AUTO_INCREMENT PRIMARY KEY,           -- Identificativo univoco del paziente
     nome VARCHAR(50) NOT NULL,                   -- Nome del paziente
     cognome VARCHAR(50) NOT NULL,                -- Cognome del paziente
-    email VARCHAR(50) UNIQUE,                    -- Email univoca per login/contatti
+    email VARCHAR(50) UNIQUE NOT NULL,                    -- Email univoca per login/contatti
     telefono VARCHAR(20)                         -- Numero di telefono del paziente
 ) ENGINE=InnoDB;                                 -- InnoDB: integrità referenziale garantita
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS prenotazione (
 -- Le password vengono salvate come hash (es. bcrypt o argon2id) generati dal backend.
 CREATE TABLE IF NOT EXISTS login (
     id INT AUTO_INCREMENT PRIMARY KEY,              -- Identificativo univoco del record login
-    username VARCHAR(50) UNIQUE NOT NULL,           -- Nome utente (univoco)
+    username VARCHAR(50) UNIQUE NOT NULL,           -- Nome utente (univoco) EMAIL DEL PAZIENTE O DOTTORE
     password VARCHAR(255) NOT NULL,                 -- Hash della password (NON in chiaro)
     ruolo ENUM('P', 'D') NOT NULL,                  -- 'P' = Paziente, 'D' = Dottore
     idPaziente INT DEFAULT NULL,                    -- FK per paziente (se ruolo = 'P')
