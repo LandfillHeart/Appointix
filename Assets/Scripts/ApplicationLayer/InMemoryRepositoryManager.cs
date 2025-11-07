@@ -221,7 +221,26 @@ namespace Appointix.ApplicationLayer
 		#region Delete
 		public void DeleteAppointment(int appointmentID)
 		{
-			throw new NotImplementedException();
+			// 1️⃣ Controlla se l'appuntamento esiste nel dizionario
+			if (allAppointments.TryGetValue(appointmentID, out Appointment appointmentToDelete))
+			{
+				// 2️⃣ Rimuovi l'appuntamento dal dizionario
+				allAppointments.Remove(appointmentID);
+
+				// 3️⃣ Stampa a console per debug
+				Debug.Log($"🗑️ Appuntamento con ID {appointmentID} eliminato con successo.");
+
+				// 4️⃣ Esegui eventuali callback/eventi collegati
+				OnAppointmentDeleted?.Invoke();
+
+				// Se vuoi passare l'oggetto eliminato all'evento:
+				// OnAppointmentDeleted?.Invoke(appointmentToDelete); -- per la logica attuata non ci serve per ora
+			}
+			else
+			{
+				// ❌ Nessun appuntamento trovato con quell’ID
+				Debug.LogWarning($"⚠️ Nessun appuntamento trovato con ID {appointmentID}. Nessuna eliminazione effettuata.");
+			}
 		}
 
 		public void DeleteDoctor(int id)
@@ -230,9 +249,9 @@ namespace Appointix.ApplicationLayer
 		}
 
 		public void DeletePatient(int id)
-		{
-			throw new NotImplementedException();
-		}
+        {
+            throw new NotImplementedException();
+        }
 		#endregion
 		#endregion
 
