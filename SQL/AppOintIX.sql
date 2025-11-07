@@ -142,5 +142,9 @@ SELECT * FROM dottore ORDER BY id DESC;
 -- === PROVA PAZIENTE ===
 SELECT * FROM paziente ORDER BY id DESC;
 
+
+-- === PROVA PRENOTAZIONE ===
+SELECT * FROM prenotazione ORDER BY id DESC;
+
 -- === PROVA LOGIN ===
 SELECT * FROM login ORDER BY id DESC;

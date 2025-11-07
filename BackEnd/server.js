@@ -55,6 +55,19 @@ app.get('/api/dottori', async (req, res) => {
   }
 });
 
+// GET id dottori
+app.get('/api/dottori/:id', async (req, res) => {
+  try {
+    const [tasks] = await db.execute('SELECT * FROM dottore WHERE id = ?', [req.params.id]);
+    if (tasks.length === 0) {
+      return res.status(404).json({ error: 'Dottore non trovato' });
+    }
+    res.json(tasks[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Errore nel recupero del dottore', details: error.message });
+  }
+});
+
 // API endpoints for pazienti
 // GET all pazienti
 app.get('/api/pazienti', async (req, res) => {
@@ -68,6 +81,19 @@ app.get('/api/pazienti', async (req, res) => {
     console.log('⚠️ MySQL not available, using fallback [pazienti]:', error.message);
     // Fallback: restituisci task in memoria
     res.json(fb.pazienti);
+  }
+});
+
+// GET id pazienti
+app.get('/api/pazienti/:id', async (req, res) => {
+  try {
+    const [tasks] = await db.execute('SELECT * FROM paziente WHERE id = ?', [req.params.id]);
+    if (tasks.length === 0) {
+      return res.status(404).json({ error: 'Paziente non trovato' });
+    }
+    res.json(tasks[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Errore nel recupero del paziente', details: error.message });
   }
 });
 
@@ -86,6 +112,156 @@ app.get('/api/prenotazioni', async (req, res) => {
     res.json(fb.prenotazioni);
   }
 });
+
+// GET id prenotazioni
+app.get('/api/prenotazioni/:id', async (req, res) => {
+  try {
+    const [tasks] = await db.execute('SELECT * FROM prenotazione WHERE id = ?', [req.params.id]);
+    if (tasks.length === 0) {
+      return res.status(404).json({ error: 'Prenotazione non trovata' });
+    }
+    res.json(tasks[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Errore nel recupero della prenotazione', details: error.message });
+  }
+});
+
+// GET id dottore prenotazioni
+app.get('/api/prenotazioni/dottore/:id', async (req, res) => {
+  try {
+    const [tasks] = await db.execute('SELECT * FROM prenotazione WHERE idDottore = ?', [req.params.id]);
+    if (tasks.length === 0) {
+      return res.status(404).json({ error: 'Prenotazione non trovata' });
+    }
+    res.json(tasks[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Errore nel recupero della prenotazione', details: error.message });
+  }
+});
+
+// GET id paziente prenotazioni
+app.get('/api/prenotazioni/paziente/:id', async (req, res) => {
+  try {
+    const [tasks] = await db.execute('SELECT * FROM prenotazione WHERE idPaziente = ?', [req.params.id]);
+    if (tasks.length === 0) {
+      return res.status(404).json({ error: 'Prenotazione non trovata' });
+    }
+    res.json(tasks[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Errore nel recupero della prenotazione', details: error.message });
+  }
+});
+
+
+app.post('/api/creaprenotazione', async (req, res) => {
+  try {
+    // ================================
+    // 1️⃣ Estrazione dati dal body
+    // ================================
+    const { idPaziente, idDottore, inizioAppuntamento } = req.body;
+
+    // Validazione minima
+    if (!idPaziente || !idDottore) {
+      return res.status(400).json({ message: 'idPaziente e idDottore sono obbligatori' });
+    }
+
+    // ================================
+    // 2️⃣ Verifica esistenza paziente
+    // ================================
+    const [pazienteRows] = await db.query(
+      'SELECT id FROM paziente WHERE id = ?',
+      [idPaziente]
+    );
+    if (pazienteRows.length === 0) {
+      return res.status(404).json({ message: '❌ Paziente non trovato' });
+    }
+
+    // ================================
+    // 3️⃣ Verifica esistenza dottore
+    // ================================
+    const [dottoreRows] = await db.query(
+      'SELECT id, durata FROM dottore WHERE id = ?',
+      [idDottore]
+    );
+    if (dottoreRows.length === 0) {
+      return res.status(404).json({ message: '❌ Dottore non trovato' });
+    }
+
+    // ================================
+    // 4️⃣ Inserimento prenotazione
+    // ================================
+    // Se inizioAppuntamento non è fornito, usa il default CURRENT_TIMESTAMP del DB
+    let query, params;
+    if (inizioAppuntamento) {
+      query = `
+        INSERT INTO prenotazione (idPaziente, idDottore, inizioApp)
+        VALUES (?, ?, ?)
+      `;
+      params = [idPaziente, idDottore, inizioAppuntamento];
+    } else {
+      query = `
+        INSERT INTO prenotazione (idPaziente, idDottore)
+        VALUES (?, ?)
+      `;
+      params = [idPaziente, idDottore];
+    }
+
+    const [result] = await db.query(query, params);
+
+    // ================================
+    // 5️⃣ Recupero prenotazione creata
+    // ================================
+    const [newApp] = await db.query(
+      'SELECT * FROM prenotazione WHERE id = ?',
+      [result.insertId]
+    );
+
+    // ================================
+    // 6️⃣ Risposta OK
+    // ================================
+    res.status(201).json({
+      message: '✅ Prenotazione creata con successo',
+      prenotazione: newApp[0]
+    });
+
+  } catch (err) {
+    console.error('❌ Errore nella creazione prenotazione:', err);
+    res.status(500).json({
+      message: 'Errore nel server durante la creazione della prenotazione',
+      error: err.message
+    });
+  }
+});
+
+// ============================
+// DELETE PRENOTAZIONE
+// ============================
+//
+// Rimuove una prenotazione dal DB tramite ID
+// Verifica prima che la prenotazione esista, altrimenti restituisce errore
+// ============================
+app.delete('/api/prenotazioni/:id', async (req, res) => {
+  try {
+    const prenotazioneId = req.params.id;
+
+    // 1️⃣ Controllo esistenza
+    const [check] = await db.query('SELECT * FROM prenotazione WHERE id = ?', [prenotazioneId]);
+    if (check.length === 0) {
+      return res.status(404).json({ message: '❌ Prenotazione non trovata' });
+    }
+
+    // 2️⃣ Eliminazione
+    await db.query('DELETE FROM prenotazione WHERE id = ?', [prenotazioneId]);
+    console.log(`🗑️ Prenotazione ID ${prenotazioneId} eliminata con successo.`);
+
+    // 3️⃣ Risposta positiva
+    res.json({ message: '✅ Prenotazione eliminata con successo', id: prenotazioneId });
+  } catch (err) {
+    console.error('❌ Errore durante l’eliminazione della prenotazione:', err);
+    res.status(500).json({ message: 'Errore del server durante la cancellazione', error: err.message });
+  }
+});
+
 
 // ============================
 // ENDPOINT: REGISTRAZIONE
@@ -229,13 +405,30 @@ app.post('/api/login', async (req, res) => {
 // Attiva il server Express in ascolto sulla porta 3000
 // Accessibile su http://localhost:3000
 // ============================
-// all'avvio del server scrive delle informative in console
+
 app.listen(port, () => {
-  console.log(`🚀 Server in ascolto su http://localhost:${port}`);
-  console.log(`Endpoints disponibili:`);
-  console.log(`- GET /api/dottori - Ottieni tutte le dottori`);
-  console.log(`- GET /api/pazienti - Ottieni tutte le pazienti`);
-  console.log(`- GET /api/prenotazioni - Ottieni tutte le prenotazioni`);
-  console.log(`- POST /api/register - Crea utenza, P o D, e registra`);
-  console.log(`- POST /api/login - Connessione con utenza registrata`);
+  console.log('=================================================');
+  console.log(`🚀 Server attivo su: http://localhost:${port}`);
+  console.log('=================================================');
+  console.log('📡 ENDPOINT DISPONIBILI:');
+  
+  console.log('--- DOTTORE ---');
+  console.log('GET    /api/dottori               → Tutti i dottori');
+  console.log('GET    /api/dottori/:id           → Dottore per ID');
+  console.log('--- PAZIENTE ---');
+  console.log('GET    /api/pazienti              → Tutti i pazienti');
+  console.log('GET    /api/pazienti/:id          → Paziente per ID');
+
+  console.log('--- PRENOTAZIONI ---');
+  console.log('GET    /api/prenotazioni          → Tutte le prenotazioni');
+  console.log('GET    /api/prenotazioni/:id      → Prenotazione per ID');
+  console.log('GET    /api/prenotazioni/dottore/:id  → Prenotazioni per dottore');
+  console.log('GET    /api/prenotazioni/paziente/:id → Prenotazioni per paziente');
+  console.log('POST   /api/creaprenotazione      → Crea una nuova prenotazione');
+  console.log('DELETE /api/prenotazioni/:id      → Elimina prenotazione per ID');
+
+  console.log('--- AUTENTICAZIONE ---');
+  console.log('POST   /api/register              → Crea utenza (P o D)');
+  console.log('POST   /api/login                 → Esegui login utente');
+  console.log('=================================================');
 });

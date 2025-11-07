@@ -35,3 +35,10 @@ JSON – Login Dottore:
   "username": "lucav",
   "password": "123456"
 }
+
+JSON – creazione prenotazione:
+{
+  "idPaziente": 1,
+  "idDottore": 1,
+  "inizioAppuntamento": "2025-11-06 10:30:00"
+}
