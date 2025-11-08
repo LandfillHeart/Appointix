@@ -349,7 +349,7 @@ namespace Appointix.ApplicationLayer
 			{
 				nome = newPatient.nome,
 				cognome = newPatient.cognome,
-				username = newPatient.nome + newPatient.cognome + newPatient.email,
+				username = newPatient.email,
 				password = password,
 				email = newPatient.email,
 				ruolo = "P",
