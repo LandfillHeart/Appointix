@@ -26,8 +26,8 @@ namespace Appointix.ApplicationLayer
 		}
 		private InMemoryRepositoryManager() 
 		{
-			patientsJsonText = AppContext.Instance.patientsJson.text;
-			LoadPatients();
+			//patientsJsonText = AppContext.Instance.patientsJson.text;
+			//LoadPatients();
 		}
 		#endregion
 
