@@ -20,7 +20,7 @@ const mysql = require('mysql2/promise');
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'fondutaLover13',   // SE la password è vuota, usa stringa vuota '' — non usare null
+  password: '',   // SE la password è vuota, usa stringa vuota '' — non usare null
   database: 'AppOintIX',
   waitForConnections: true,
   connectionLimit: 10,   // valore ragionevole per dev; in produzione dimensionalo

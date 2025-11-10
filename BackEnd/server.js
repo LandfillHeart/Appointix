@@ -68,6 +68,52 @@ app.get('/api/dottori/:id', async (req, res) => {
   }
 });
 
+// GET dottori per specializzazione
+app.get('/api/sdottori/:specializzazione', async (req, res) => {
+  try {
+    const specializzazione = `%${req.params.specializzazione.toUpperCase()}%`;
+
+    const [tasks] = await db.execute(
+      'SELECT * FROM dottore WHERE UPPER(specializzazione) LIKE ?',
+      [specializzazione]
+    );
+
+    if (tasks.length === 0) {
+      return res.status(404).json({ error: 'Specializzazione non trovata' });
+    }
+
+    res.json(tasks); // restituisci tutti i dottori trovati, non solo il primo
+  } catch (error) {
+    res.status(500).json({
+      error: 'Errore nel recupero della specializzazione del dottore',
+      details: error.message
+    });
+  }
+});
+
+// GET dottori per citta
+app.get('/api/cdottori/:citta', async (req, res) => {
+  try {
+    const citta = `%${req.params.citta.toUpperCase()}%`;
+
+    const [tasks] = await db.execute(
+      'SELECT * FROM dottore WHERE UPPER(citta) LIKE ?',
+      [citta]
+    );
+
+    if (tasks.length === 0) {
+      return res.status(404).json({ error: 'Citta non trovata' });
+    }
+
+    res.json(tasks); // restituisci tutti i dottori trovati, non solo il primo
+  } catch (error) {
+    res.status(500).json({
+      error: 'Errore nel recupero della citta del dottore',
+      details: error.message
+    });
+  }
+});
+
 // API endpoints for pazienti
 // GET all pazienti
 app.get('/api/pazienti', async (req, res) => {
