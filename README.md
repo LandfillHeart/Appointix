@@ -1,11 +1,15 @@
 # Appointix
 
-![Node.js](https://img.shields.io/badge/Node.js-v18-green?logo=node.js)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql)
-![Unity](https://img.shields.io/badge/Unity-2023.2-black?logo=unity)
+![Node.js](https://img.shields.io/badge/Node.js-v22.20-green?logo=node.js)
+![MySQL](https://img.shields.io/badge/MySQL-v8.0.36-blue?logo=mysql)
+![Unity](https://img.shields.io/badge/Unity-v6.2.9-black?logo=unity)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-Applicazione sviluppata da **Ray Kimbler**, **Fabio D’Alessandro**, e **Michele Gabriele Matera** come **progetto finale del corso *C# – FormaTemp***.
+Applicazione sviluppata da :
+- **Ray Kimbler**
+- **Fabio D’Alessandro**
+- **Michele Gabriele Matera** 
+come **progetto finale del Academy *C# – FormaTemp***.
 
 ---
 
