@@ -407,42 +407,63 @@ app.post('/api/register', async (req, res) => {
 // ============================
 
 app.post('/api/login', async (req, res) => {
-  try {
-    // Estraggo username e password dal body
-    const { username, password } = req.body;
+  try {
+    
+    // --- INIZIO BLOCCO DI DEBUG ---
+    console.log("=================================");
+    console.log("NUOVA RICHIESTA DI LOGIN RICEVUTA");
+    console.log("DATI RICEVUTI (req.body):", req.body);
+    // --- FINE BLOCCO DI DEBUG ---
 
-    // Cerco l'utente nel DB tramite username
-    const [rows] = await db.query(
-      `SELECT * FROM login WHERE username = ?`,
-      [username]
-    );
+    // Estraggo email e password dal body
+    const { email, password } = req.body; 
 
-    // Se non esiste → errore
-    if (rows.length === 0) {
-      return res.status(401).json({ message: 'Utente non trovato' });
-    }
+    // --- INIZIO BLOCCO DI DEBUG ---
+    console.log("Variabile 'email' estratta:", email);
+    console.log("=================================");
+    // --- FINE BLOCCO DI DEBUG ---
 
-    const user = rows[0];
+    // Cerco l'utente nel DB tramite username
+    const [rows] = await db.query(
+      `SELECT * FROM login WHERE username = ?`,
+      [email]
+    );
 
-    // Confronto tra password inviata e hash salvato
-    const match = await bcrypt.compare(password, user.password);
+    // Se non esiste → errore
+    if (rows.length === 0) {
+      console.log("QUERY FALLITA: 'rows.length' è 0. Utente non trovato nel DB.");
+      return res.status(401).json({ message: 'Utente non trovato' });
+    }
 
-    // Se non coincidono → errore di autenticazione
-    if (!match) {
-      return res.status(401).json({ message: 'Password errata' });
-    }
+    const user = rows[0];
 
-    // Login riuscito → invio dati minimi (ruolo e id collegato)
-    res.json({
-      message: '✅ Login riuscito',
-      ruolo: user.ruolo,
-      id: user.ruolo === 'D' ? user.idDottore : user.idPaziente
-    });
+console.log("=================================");
+    console.log("INIZIO CONFRONTO PASSWORD");
+    console.log("Password ricevuta da Unity:", password);
+    console.log("Hash letto dal DB:", user.password);
+    console.log("=================================");
 
-  } catch (err) {
-    console.error('❌ Errore nel login:', err);
-    res.status(500).json({ message: 'Errore nel server', error: err.message });
-  }
+    // Confronto tra password inviata e hash salvato
+    const match = await bcrypt.compare(password, user.password);
+
+    // Se non coincidono → errore di autenticazione
+    if (!match) {
+      console.log("CONFRONTO FALLITO: 'match' è false. Password errata.");
+      return res.status(401).json({ message: 'Password errata' });
+    }
+
+    console.log("LOGIN RIUSCITO!");
+    // Login riuscito → invio dati minimi (ruolo e id collegato)
+    res.json({
+      message: '✅ Login riuscito',
+      ruolo: user.ruolo,
+      id: user.ruolo === 'D' ? user.idDottore : user.idPaziente
+    });
+
+  } catch (err) {
+    console.error('❌ Errore nel login:', err);
+    res.status(500).json({ message: 'Errore nel server', error: err.message });
+  }
 });
 
 

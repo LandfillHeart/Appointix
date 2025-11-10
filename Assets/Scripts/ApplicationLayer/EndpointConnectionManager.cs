@@ -93,7 +93,10 @@ namespace Appointix.ApplicationLayer
         /// Evento invocato dopo l'aggiornamento di un appuntamento dal database.
         /// </summary>
         public event Action<Appointment> OnAppointmentsUpdate;
-        
+        public event Action<Patient> OnPatientLoginSuccess;
+        public event Action<Doctor> OnDoctorLoginSuccess;
+        public event Action<string> OnLoginFailed;
+
         #endregion
 
         /// <summary>
@@ -136,7 +139,7 @@ namespace Appointix.ApplicationLayer
                 durata = appointmentDurationInMinutes,
                 giorniDisponibili = weekDaysAvailable,
                 orarioInizio = inHours,
-				orarioFine = fnHours
+                orarioFine = fnHours
             };
             StartCoroutine(CreateDoctor_DB(newDoctor, password));
         }
@@ -302,23 +305,23 @@ namespace Appointix.ApplicationLayer
         private IEnumerator CreateDoctor_DB(Doctor newDoctor, string password)
         {
             string uri = $"{baseUri}/dottori";
-            
 
-			RegisterUser newUser = new RegisterUser()
-			{
-				nome = newDoctor.nome,
-				cognome = newDoctor.cognome,
-				username = newDoctor.email,
-				password = password,
-				email = newDoctor.email,
-				ruolo = "D",
-				telefono = newDoctor.telefono,
-				citta = newDoctor.citta,
-				specializzazione = newDoctor.specializzazione,
-			};
 
-			string jsonData = JsonUtility.ToJson(newUser);
-			using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
+            RegisterUser newUser = new RegisterUser()
+            {
+                nome = newDoctor.nome,
+                cognome = newDoctor.cognome,
+                username = newDoctor.email,
+                password = password,
+                email = newDoctor.email,
+                ruolo = "D",
+                telefono = newDoctor.telefono,
+                citta = newDoctor.citta,
+                specializzazione = newDoctor.specializzazione,
+            };
+
+            string jsonData = JsonUtility.ToJson(newUser);
+            using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
             {
                 yield return request.SendWebRequest();
 
@@ -342,21 +345,21 @@ namespace Appointix.ApplicationLayer
         private IEnumerator CreatePatient_DB(Patient newPatient, string password)
         {
             string uri = $"{baseUri}/register";
-			//string jsonData = JsonHelper.ToJson(newPatient);
-			// password, ruolo, nome, cognome, email, telefono,
-			// specializzazione?, citta?, idPaziente, idDottore
-			RegisterUser newUser = new RegisterUser()
-			{
-				nome = newPatient.nome,
-				cognome = newPatient.cognome,
-				username = newPatient.email,
-				password = password,
-				email = newPatient.email,
-				ruolo = "P",
-				telefono = newPatient.telefono,
-			};
+            //string jsonData = JsonHelper.ToJson(newPatient);
+            // password, ruolo, nome, cognome, email, telefono,
+            // specializzazione?, citta?, idPaziente, idDottore
+            RegisterUser newUser = new RegisterUser()
+            {
+                nome = newPatient.nome,
+                cognome = newPatient.cognome,
+                username = newPatient.email,
+                password = password,
+                email = newPatient.email,
+                ruolo = "P",
+                telefono = newPatient.telefono,
+            };
 
-			string jsonData = JsonUtility.ToJson(newUser);
+            string jsonData = JsonUtility.ToJson(newUser);
 
             using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
             {
@@ -476,8 +479,8 @@ namespace Appointix.ApplicationLayer
         {
             string uri = $"{baseUri}/pazienti/{id}";
             using (UnityWebRequest request = UnityWebRequest.Get(uri))
-			{
-				request.SetRequestHeader("Content-Type", "application/json");
+            {
+                request.SetRequestHeader("Content-Type", "application/json");
                 yield return request.SendWebRequest();
 
                 if (request.result != UnityWebRequest.Result.Success)
@@ -590,58 +593,107 @@ namespace Appointix.ApplicationLayer
             }
         }
 
-		/// <summary>
-		/// Coroutina che esegue la richiesta DELETE per eliminare un paziente.
-		/// </summary>
-		/// <param name="id">L'ID del paziente da eliminare.</param>
-		private IEnumerator DeletePatient_DB(int id)
-		{
-			string uri = $"{baseUri}/pazienti/{id}";
-			using (UnityWebRequest request = UnityWebRequest.Delete(uri))
-			{
-				yield return request.SendWebRequest();
+        /// <summary>
+        /// Coroutina che esegue la richiesta DELETE per eliminare un paziente.
+        /// </summary>
+        /// <param name="id">L'ID del paziente da eliminare.</param>
+        private IEnumerator DeletePatient_DB(int id)
+        {
+            string uri = $"{baseUri}/pazienti/{id}";
+            using (UnityWebRequest request = UnityWebRequest.Delete(uri))
+            {
+                yield return request.SendWebRequest();
 
-				if (request.result != UnityWebRequest.Result.Success)
-				{
-					Debug.LogError($"Error Deleting Patient: {request.error}");
-				}
-				else
-				{
-					Debug.Log("Patient Deleted!");
-					OnPatientDeleted?.Invoke();
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Coroutina pubblica per testare la connessione all'API.
-		/// Esegue una semplice richiesta GET e invoca un callback con il risultato.
-		/// </summary>
-		/// <param name="callback">Azione da invocare con 'true' se la connessione ha successo, altrimenti 'false'.</param>
-		public IEnumerator TestConnection_DB(Action<bool> callback)
-		{
-			// Usiamo un endpoint semplice (es. /doctors) per il test
-			string uri = $"{baseUri}/dottori"; 
+                if (request.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogError($"Error Deleting Patient: {request.error}");
+                }
+                else
+                {
+                    Debug.Log("Patient Deleted!");
+                    OnPatientDeleted?.Invoke();
+                }
+            }
+        }
 
-			using (UnityWebRequest request = UnityWebRequest.Get(uri))
-			{
-				request.timeout = 5; // 5 secondi di timeout
-				
-				yield return request.SendWebRequest();
+        // Aggiungi questo metodo pubblico (richiesto dall'interfaccia)
+public void Login(string email, string password, string ruolo)
+{
+    StartCoroutine(Login_DB(email, password, ruolo));
+}
 
-				// Controlla se la richiesta ha avuto successo (es. 200 OK)
-				if (request.result == UnityWebRequest.Result.Success)
-				{
-					Debug.Log("DB Connection Test SUCCEEDED.");
-					callback?.Invoke(true); // Successo!
-				}
-				else
-				{
-					Debug.LogWarning($"DB Connection Test FAILED: {request.error}");
-					callback?.Invoke(false); // Fallito
-				}
-			}
-		}
+// Aggiungi questa nuova Coroutine (dentro #region Unity Web Requests)
+private IEnumerator Login_DB(string email, string password, string ruolo)
+{
+    string uri = $"{baseUri}/login";
+
+    LoginRequest loginData = new LoginRequest
+    {
+        email = email,
+        password = password,
+        ruolo = ruolo
+    };
+    string jsonData = JsonUtility.ToJson(loginData);
+
+    using (UnityWebRequest request = CreateJsonRequest(uri, "POST", jsonData))
+    {
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"Error Login: {request.error}");
+            OnLoginFailed?.Invoke(request.downloadHandler.text); 
+        }
+        else
+        {
+            Debug.Log("Login Successful!");
+            string responseJson = request.downloadHandler.text;
+
+            if (ruolo == "P") // Paziente
+            {
+                Patient patient = JsonUtility.FromJson<Patient>(responseJson);
+                OnPatientLoginSuccess?.Invoke(patient);
+            }
+            else if (ruolo == "D") // Dottore
+            {
+                Doctor doctor = JsonUtility.FromJson<Doctor>(responseJson);
+                OnDoctorLoginSuccess?.Invoke(doctor);
+            }
+        }
+    }
+}
+
+        /// <summary>
+        /// Coroutina pubblica per testare la connessione all'API.
+        /// Esegue una semplice richiesta GET e invoca un callback con il risultato.
+        /// </summary>
+        /// <param name="callback">Azione da invocare con 'true' se la connessione ha successo, altrimenti 'false'.</param>
+        public IEnumerator TestConnection_DB(Action<bool> callback)
+        {
+            // Usiamo un endpoint semplice (es. /doctors) per il test
+            string uri = $"{baseUri}/dottori";
+
+            using (UnityWebRequest request = UnityWebRequest.Get(uri))
+            {
+                request.timeout = 5; // 5 secondi di timeout
+
+                yield return request.SendWebRequest();
+
+                // Controlla se la richiesta ha avuto successo (es. 200 OK)
+                if (request.result == UnityWebRequest.Result.Success)
+                {
+                    Debug.Log("DB Connection Test SUCCEEDED.");
+                    callback?.Invoke(true); // Successo!
+                }
+                else
+                {
+                    Debug.LogWarning($"DB Connection Test FAILED: {request.error}");
+                    callback?.Invoke(false); // Fallito
+                }
+            }
+        }
         #endregion
     }
+    
+    
 }

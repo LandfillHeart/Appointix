@@ -21,5 +21,13 @@ namespace Appointix.ApplicationLayer
 		public event Action OnPatientDeleted;
 		public event Action OnDoctorDeleted;
 		public event Action OnAppointmentDeleted;
+
+		#region Login Events
+		public event Action<Patient> OnPatientLoginSuccess;
+		public event Action<Doctor> OnDoctorLoginSuccess;
+		public event Action<string> OnLoginFailed;
+
+		void Login(string email, string password, string ruolo);
+		#endregion
 	}
 }
