@@ -30,6 +30,7 @@ namespace Appointix.UI
 		{
 			repoManager = ApplicationLayer.AppContext.Instance.RepositoryManager;
 			repoManager.OnAppointmentsLoaded += DisplayAppointments;
+			
 		}
 
 		private void DisplayAppointments(List<Appointment> appsToDisplay)
@@ -43,6 +44,11 @@ namespace Appointix.UI
 			}
 		}
 
+		#region Pool Pattern
+		// Pool Pattern: design pattern solitamente usato nello sviluppo giochi
+		// piuttosto che creare constantemente oggetti nuovi, quelli inutilizzati vengono aggiunti ad un pool
+		// se ci sono elementi nel pool, utilizza quelli piuttosto che instanziare un oggetto nuovo
+		// questo perché creare/eliminare oggetti è più lento di attivarli e disattivarli
 		private AppointmentItem Depool()
 		{
 			if (itemsPool.Count == 0)
@@ -59,7 +65,7 @@ namespace Appointix.UI
 		{
 			itemsPool.Enqueue(item);
 		}
-
+		#endregion
 		public void SwitchToAppointments()
 		{
 			appointmentsPanel.SetActive(true);
