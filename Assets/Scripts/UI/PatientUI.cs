@@ -7,7 +7,7 @@ using AppContext = Appointix.ApplicationLayer.AppContext;
 
 namespace Appointix.UI
 {
-	public class DoctorUI : MonoBehaviour, IAppointmentPool
+	public class PatientUI : MonoBehaviour, IAppointmentPool
 	{
 		[SerializeField] private GameObject appointmentsPanel;
 		[SerializeField] private GameObject userPanel;
@@ -31,7 +31,7 @@ namespace Appointix.UI
 		{
 			repoManager = AppContext.Instance.RepositoryManager;
 			repoManager.OnAppointmentsLoaded += DisplayAppointments;
-			repoManager.ReadAllByDoctor(AppContext.Instance.userID);
+			repoManager.ReadAllByClient(AppContext.Instance.userID);
 		}
 
 		private void DisplayAppointments(List<Appointment> appsToDisplay)
@@ -73,7 +73,7 @@ namespace Appointix.UI
 			userPanel.SetActive(false);
 		}
 
-		public void SwitchToUser() 
+		public void SwitchToUser()
 		{
 			appointmentsPanel.SetActive(false);
 			userPanel.SetActive(true);

@@ -598,7 +598,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 284857593}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 575563915}
+        m_TargetAssemblyTypeName: Appointix.UI.DoctorUI, Assembly-CSharp
+        m_MethodName: SwitchToAppointments
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &284857593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,6 +992,62 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7312326994542147021, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312326994542147021, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312326994542147021, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 575563915}
+    - target: {fileID: 7312326994542147021, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312326994542147021, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchToUser
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312326994542147021, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Appointix.UI.DoctorUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312326994542147021, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247583673316078897, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247583673316078897, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247583673316078897, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 575563915}
+    - target: {fileID: 8247583673316078897, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247583673316078897, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchToAppointments
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247583673316078897, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Appointix.UI.DoctorUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247583673316078897, guid: 6644bfa9c1ab1e7469b58f451554c7cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1076,7 +1144,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2136189596}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 575563915}
+        m_TargetAssemblyTypeName: Appointix.UI.DoctorUI, Assembly-CSharp
+        m_MethodName: SwitchToUser
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2136189596
 MonoBehaviour:
   m_ObjectHideFlags: 0
