@@ -152,7 +152,9 @@ app.get('/api/prenotazioni/paziente/:id', async (req, res) => {
   }
 });
 
-
+  // =========================
+  // CREAZIONE PRENOTAZIONE
+  // =========================
 app.post('/api/creaprenotazione', async (req, res) => {
   try {
     // ================================
