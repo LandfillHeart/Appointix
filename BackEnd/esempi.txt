@@ -1,8 +1,10 @@
 *Esempio di chiamate JSON*
 
-Paziente:
+
+JSON – Register Paziente:
+
 {
-  "username": "fabiom",
+  "username": "fabio@test.com",
   "password": "123456",
   "ruolo": "P",
   "nome": "Fabio",
@@ -11,34 +13,137 @@ Paziente:
   "telefono": "3400000001"
 }
 
-Dottore:
 {
-  "username": "lucav",
+  "username": "ray@test.com",
+  "password": "123456",
+  "ruolo": "P",
+  "nome": "Ray",
+  "cognome": "Bianchi",
+  "email": "ray@test.com",
+  "telefono": "3400000002"
+}
+
+{
+  "username": "michele@test.com",
+  "password": "123456",
+  "ruolo": "P",
+  "nome": "Michele",
+  "cognome": "Rossi",
+  "email": "michele@test.com",
+  "telefono": "3400000003"
+}
+
+{
+  "username": "giulia@test.com",
+  "password": "123456",
+  "ruolo": "P",
+  "nome": "Giulia",
+  "cognome": "Verdi",
+  "email": "giulia@test.com",
+  "telefono": "3400000004"
+}
+
+
+
+JSON – Register Dottore:
+
+{
+  "username": "luca@clinic.it",
   "password": "123456",
   "ruolo": "D",
   "nome": "Luca",
   "cognome": "Verdi",
   "specializzazione": "Cardiologo",
   "email": "luca@clinic.it",
-  "telefono": "081 123456",
+  "telefono": "081123456",
   "citta": "Milano"
 }
 
-JSON – Login Paziente:
 {
-  "username": "fabiom",
-  "password": "123456"
+  "username": "michele@clinic.it",
+  "password": "123456",
+  "ruolo": "D",
+  "nome": "Michele",
+  "cognome": "Rossi",
+  "specializzazione": "Ortopedico",
+  "email": "michele@clinic.it",
+  "telefono": "081123457",
+  "citta": "Napoli"
 }
+
+{
+  "username": "ray@clinic.it",
+  "password": "123456",
+  "ruolo": "D",
+  "nome": "Ray",
+  "cognome": "Bianchi",
+  "specializzazione": "Dermatologo",
+  "email": "ray@clinic.it",
+  "telefono": "081123458",
+  "citta": "Roma"
+}
+
+{
+  "username": "marta@clinic.it",
+  "password": "123456",
+  "ruolo": "D",
+  "nome": "Marta",
+  "cognome": "Neri",
+  "specializzazione": "Neurologa",
+  "email": "marta@clinic.it",
+  "telefono": "081123459",
+  "citta": "Bologna"
+}
+
+
+JSON – Login Paziente:
+
+{ "username": "fabio@test.com", "password": "123456" }
+{ "username": "ray@test.com", "password": "123456" }
+{ "username": "michele@test.com", "password": "123456" }
+
 
 JSON – Login Dottore:
-{
-  "username": "lucav",
-  "password": "123456"
-}
+
+{ "username": "luca@clinic.it", "password": "123456" }
+{ "username": "michele@clinic.it", "password": "123456" }
+{ "username": "ray@clinic.it", "password": "123456" }
+
 
 JSON – creazione prenotazione:
+
 {
   "idPaziente": 1,
   "idDottore": 1,
   "inizioAppuntamento": "2025-11-06 10:30:00"
+}
+
+{
+  "idPaziente": 2,
+  "idDottore": 2,
+  "inizioAppuntamento": "2025-11-06 11:00:00"
+}
+
+{
+  "idPaziente": 3,
+  "idDottore": 3,
+  "inizioAppuntamento": "2025-11-06 14:00:00"
+}
+
+{
+  "idPaziente": 4,
+  "idDottore": 4,
+  "inizioAppuntamento": "2025-11-06 15:30:00"
+}
+
+{
+  "idPaziente": 1,
+  "idDottore": 2,
+  "inizioAppuntamento": "2025-11-07 09:00:00"
+}
+
+{
+  "idPaziente": 2,
+  "idDottore": 1,
+  "inizioAppuntamento": "2025-11-07 09:30:00"
 }
