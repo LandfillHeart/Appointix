@@ -1,15 +1,17 @@
 # Appointix
 
-![Node.js](https://img.shields.io/badge/Node.js-v22.20-green?logo=node.js)
-![MySQL](https://img.shields.io/badge/MySQL-v8.0.36-blue?logo=mysql)
-![Unity](https://img.shields.io/badge/Unity-v6.2.9-black?logo=unity)
-![License](https://img.shields.io/badge/License-MIT-green)
+![Node.js](https://img.shields.io/badge/Node.js-v22.20-339933?logo=node.js&style=for-the-badge)
+![MySQL](https://img.shields.io/badge/MySQL-v8.0.36-00758F?logo=mysql&style=for-the-badge)
+![Unity](https://img.shields.io/badge/Unity-v6.2.9-000000?logo=unity&style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-00C853?style=for-the-badge)
 
-Applicazione sviluppata da :
-- **Ray Kimbler**
-- **Fabio D’Alessandro**
-- **Michele Gabriele Matera** 
-come **progetto finale del Academy *C# – FormaTemp***.
+
+Applicazione sviluppata da:  
+- **Ray Kimbler**  
+- **Fabio D’Alessandro**  
+- **Michele Gabriele Matera**  
+
+come **progetto finale del corso C# – FormaTemp Academy**.
 
 ---
 
@@ -88,14 +90,17 @@ git clone https://github.com/LandfillHeart/Appointix.git
 cd appointix
 ```
 
+
 2. **Installa dipendenze Node.js**
 ```bash
 npm install
 ```
 
+
 3. **Configura il database**
 - Avvia MySQL
 - Esegui lo script db.sql per creare tabelle e trigger.
+
 
 4. **Avvia il server**
 - Entra nella cartella backend e lancia, dopo aver cambiato le credenziali in  **db.js**:
@@ -103,14 +108,17 @@ npm install
 npm start
 ```
 
+
 5. **Servizio REST**
 - Avvia PostMan
 - Copia gli esempi Json dal file: [BackEnd/esempi.txt](BackEnd/esempi.txt)
 
-6. **TIPS**
+
+6. **RECAP TIPS**
 - REST API: Interfaccia per comunicare tra client e server tramite HTTP standard.
 - Trigger MySQL: Automatizzano operazioni complesse lato database (es. calcolo fine appuntamento).
 - bcrypt: Protegge password con hash + salt, impossibile da decifrare facilmente.
+
 
 7. **Licenza**
 - [LICENSE](LICENSE)
