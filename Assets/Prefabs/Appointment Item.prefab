@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2649158914690282510}
   - component: {fileID: 6524520614369450057}
   - component: {fileID: 1500061908957483211}
+  - component: {fileID: 7617052512283441963}
   m_Layer: 5
   m_Name: Appointment Item
   m_TagString: Untagged
@@ -77,6 +78,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7617052512283441963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407344085140316989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5aecda24938afc488566a064c2bd9a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Appointix.UI.AppointmentItem
+  userName: {fileID: 7974913226924309301}
+  appointmentTime: {fileID: 8185982628304331872}
 --- !u!1 &5515068436070308429
 GameObject:
   m_ObjectHideFlags: 0

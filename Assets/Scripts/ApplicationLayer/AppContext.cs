@@ -29,6 +29,9 @@ namespace Appointix.ApplicationLayer
         #endregion
 
         public IRepositoryManager RepositoryManager { get; private set; }
+		public bool connectedToDB;
+
+		public int userID;
 
         /// <summary>
         /// Tenta di avviare la connessione al database in modo asincrono.
@@ -79,8 +82,15 @@ namespace Appointix.ApplicationLayer
 				RepositoryManager = InMemoryRepositoryManager.Instance; 
 			}
 
+			connectedToDB = success;
+
 			// Notifica al resto dell'applicazione che un Repository è stato impostato
 			OnRepositoryManagerSet?.Invoke(RepositoryManager);
+		}
+
+		public void Login(string email, string password, string role)
+		{
+			
 		}
     }
 }
