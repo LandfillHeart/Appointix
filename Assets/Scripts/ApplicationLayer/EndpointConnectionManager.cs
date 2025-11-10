@@ -304,9 +304,9 @@ namespace Appointix.ApplicationLayer
         /// <param name="newDoctor">L'oggetto dottore da serializzare e inviare.</param>
         private IEnumerator CreateDoctor_DB(Doctor newDoctor, string password)
         {
-            string uri = $"{baseUri}/dottori";
+            string uri = $"{baseUri}/register";
 
-
+            Debug.Log($"{newDoctor.nome} {newDoctor.cognome} {newDoctor.email} {password}, {newDoctor.telefono}, {newDoctor.citta}, {newDoctor.specializzazione}");
             RegisterUser newUser = new RegisterUser()
             {
                 nome = newDoctor.nome,

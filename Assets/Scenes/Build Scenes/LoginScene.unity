@@ -388,6 +388,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65841831}
   m_CullTransparentMesh: 1
+--- !u!114 &182851719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5876678651076838138, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+  m_PrefabInstance: {fileID: 1443409276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &184157049
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +749,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4831758863767759152, guid: 5680d07699ab0694ab3dc37bb65bc89c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6273311782020908351}
+    - targetCorrespondingSourceObject: {fileID: 4831758863767759152, guid: 5680d07699ab0694ab3dc37bb65bc89c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6273311782020908354}
     - targetCorrespondingSourceObject: {fileID: 1251340539812301215, guid: 5680d07699ab0694ab3dc37bb65bc89c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 251369682}
@@ -876,6 +890,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4831758863767759152, guid: 5680d07699ab0694ab3dc37bb65bc89c, type: 3}
   m_PrefabInstance: {fileID: 251369680}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &255334027 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4437346069559462822, guid: 5680d07699ab0694ab3dc37bb65bc89c, type: 3}
+  m_PrefabInstance: {fileID: 251369680}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &269025863 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2804612494663714616, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+  m_PrefabInstance: {fileID: 1443409276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &507370239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,8 +1513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d441e93d4ff2f848b420e2317e74d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Appointix.ApplicationLayer.AppContext
-  patientsJson: {fileID: 0}
   userID: 0
+  patientsJson: {fileID: 0}
 --- !u!114 &716408966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1962,6 +1998,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023447844}
   m_CullTransparentMesh: 1
+--- !u!114 &1050001619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1580812986044531962, guid: 5680d07699ab0694ab3dc37bb65bc89c, type: 3}
+  m_PrefabInstance: {fileID: 251369680}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1051599950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,6 +2521,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204132341}
   m_CullTransparentMesh: 1
+--- !u!114 &1305654798 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6882593571402357431, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+  m_PrefabInstance: {fileID: 1443409276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1315290050
 GameObject:
   m_ObjectHideFlags: 0
@@ -2746,6 +2804,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359889012}
   m_CullTransparentMesh: 1
+--- !u!114 &1390192134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1531859652270042376, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+  m_PrefabInstance: {fileID: 1443409276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1443409276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2838,6 +2907,10 @@ PrefabInstance:
       propertyPath: m_text
       value: lamiamail@example.com
       objectReference: {fileID: 0}
+    - target: {fileID: 2454015157389074303, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+      propertyPath: m_Name
+      value: City text
+      objectReference: {fileID: 0}
     - target: {fileID: 2464498033404965040, guid: bad4400c074ca2546b74129872826f6d, type: 3}
       propertyPath: m_text
       value: Password...
@@ -2857,6 +2930,18 @@ PrefabInstance:
     - target: {fileID: 2581160323152797694, guid: bad4400c074ca2546b74129872826f6d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 46.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669616643696414273, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 108.9687
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669616643696414273, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 38.955
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669616643696414273, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -303.3148
       objectReference: {fileID: 0}
     - target: {fileID: 3493642902760641156, guid: bad4400c074ca2546b74129872826f6d, type: 3}
       propertyPath: m_text
@@ -2941,6 +3026,10 @@ PrefabInstance:
     - target: {fileID: 8787126658469330620, guid: bad4400c074ca2546b74129872826f6d, type: 3}
       propertyPath: m_text
       value: Rossi...
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867595657795804646, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+      propertyPath: m_Name
+      value: Specialize text
       objectReference: {fileID: 0}
     - target: {fileID: 9029970937474241811, guid: bad4400c074ca2546b74129872826f6d, type: 3}
       propertyPath: m_text
@@ -3168,6 +3257,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509547438}
   m_CullTransparentMesh: 1
+--- !u!114 &1529349382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2885804998273995443, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+  m_PrefabInstance: {fileID: 1443409276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!114 &1587593057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3185,12 +3285,41 @@ MonoBehaviour:
   phoneField: {fileID: 1443409280}
   emailField: {fileID: 1443409281}
   passwordField: {fileID: 1443409279}
+  specializzazioneField: {fileID: 1695489651}
+  cittaField: {fileID: 269025863}
+  durataVisitaField: {fileID: 1529349382}
+  specializzazioneText: {fileID: 182851719}
+  cittaText: {fileID: 1390192134}
+  durataVisitaText: {fileID: 1305654798}
   nameErrorDisplay: {fileID: 1359889014}
   surnameErrorDisplay: {fileID: 2060809452}
   phoneErrorDisplay: {fileID: 1023447846}
   emailErrorDisplay: {fileID: 1204132343}
   passwordErrorDisplay: {fileID: 1315290052}
   loginPanel: {fileID: 251369686}
+  roleDropdown: {fileID: 1610805105}
+--- !u!114 &1610805105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2209400804775673404, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+  m_PrefabInstance: {fileID: 1443409276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_Dropdown
+--- !u!114 &1695489651 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1974358069251543712, guid: bad4400c074ca2546b74129872826f6d, type: 3}
+  m_PrefabInstance: {fileID: 1443409276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &1824812325
 GameObject:
   m_ObjectHideFlags: 0
@@ -3624,6 +3753,28 @@ MonoBehaviour:
   emailErrorDisplay: {fileID: 20937500}
   passwordErrorDisplay: {fileID: 1824812327}
   registerPanel: {fileID: 203017794}
+--- !u!114 &6273311782020908354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251369686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b18a1688a64c364898300852150db87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoginFormController
+  emailField: {fileID: 251369685}
+  passwordField: {fileID: 251369684}
+  roleDropdown: {fileID: 251369683}
+  loginButton: {fileID: 255334027}
+  errorText: {fileID: 20937500}
+  registerButton: {fileID: 1050001619}
+  loginPanel: {fileID: 251369686}
+  doctorDashboardPanel: {fileID: 0}
+  patientDashboardPanel: {fileID: 0}
+  registerPanel: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

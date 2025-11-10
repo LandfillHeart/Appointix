@@ -14,11 +14,14 @@ public class LoginFormController : MonoBehaviour
     [SerializeField] private Button loginButton;
     [SerializeField] private TextMeshProUGUI errorText;
 
+    [SerializeField] private Button registerButton;
+
+
     [Header("Panels")]
     [SerializeField] private GameObject loginPanel; // Questo pannello (per nasconderlo)
     [SerializeField] private GameObject doctorDashboardPanel; // Il pannello da mostrare per il dottore
     [SerializeField] private GameObject patientDashboardPanel; // Il pannello da mostrare per il paziente
-
+    [SerializeField] private GameObject registerPanel;// il pannello da mostrare per effettuare la registrazione
     private void Start()
     {
         // Iscriviti al bottone
@@ -71,7 +74,7 @@ public class LoginFormController : MonoBehaviour
         // Riattiva il bottone nel caso l'utente torni indietro
         loginButton.interactable = true;
     }
-    
+
 
     private void HandleDoctorLogin(Doctor doctor)
     {
@@ -81,14 +84,14 @@ public class LoginFormController : MonoBehaviour
         // Nascondi login e mostra pannello dottore
         loginPanel.SetActive(false);
         doctorDashboardPanel.SetActive(true);
-        
+
         loginButton.interactable = true;
     }
 
     private void HandleLoginError(string error)
     {
         Debug.LogWarning($"Login UI: Fallito - {error}");
-        
+
         // Mostra l'errore all'utente
         errorText.text = $"Login fallito. {error}";
         loginButton.interactable = true; // Riattiva il bottone
@@ -104,4 +107,11 @@ public class LoginFormController : MonoBehaviour
             AppContext.Instance.OnLoginFailed -= HandleLoginError;
         }
     }
+    private void SwitchToRegisterPanel()
+    {
+        loginPanel.SetActive(false);
+        registerPanel.SetActive(true);
+    }
 }
+
+
