@@ -122,3 +122,6 @@ npm start
 
 7. **Licenza**
 - [LICENSE](LICENSE)
+
+8. **Presentazione**
+- Link alla presentazione: ([Presentazione](https://www.canva.com/design/DAG4T2-lCMI/QWm45gIaCXbrmmbpnX1IeA/edit?utm_content=DAG4T2-lCMI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton))
