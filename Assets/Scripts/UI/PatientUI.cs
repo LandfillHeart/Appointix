@@ -49,7 +49,7 @@ namespace Appointix.UI
 		// Pool Pattern: design pattern solitamente usato nello sviluppo giochi
 		// piuttosto che creare constantemente oggetti nuovi, quelli inutilizzati vengono aggiunti ad un pool
 		// se ci sono elementi nel pool, utilizza quelli piuttosto che instanziare un oggetto nuovo
-		// questo perché creare/eliminare oggetti è più lento di attivarli e disattivarli
+		// questo perchï¿½ creare/eliminare oggetti ï¿½ piï¿½ lento di attivarli e disattivarli
 		private AppointmentItem Depool()
 		{
 			if (itemsPool.Count == 0)

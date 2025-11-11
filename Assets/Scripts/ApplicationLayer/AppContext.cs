@@ -6,8 +6,8 @@ using UnityEditor.SearchService;
 using UnityEngine.SceneManagement; // Assicurati di importare i tuoi modelli (Patient, Doctor)
 
 namespace Appointix.ApplicationLayer
-{
-    public class AppContext : MonoBehaviour
+{       
+    public class AppContext : MonoBehaviour
     {
         public int userID;
         #region Singleton
@@ -94,16 +94,16 @@ namespace Appointix.ApplicationLayer
             );
 
             // Restituisce 'true' per indicare che il test è stato avviato.
-            return true;
-        }
+            return true;
+    }
 
         /// <summary>
         /// Questo metodo viene invocato dal Connection Manager quando il test è finito.
         /// È qui che il RepositoryManager viene impostato.
         /// </summary>
         /// <param name="success">True se la connessione ha avuto successo, false altrimenti.</param>
-        private void HandleConnectionTestResult(bool success)
-        {
+        private void HandleConnectionTestResult(bool success)
+     {
             if (success)
             {
                 // CONNESSO! Usa il vero Repository che parla con l'API.
@@ -206,5 +206,5 @@ namespace Appointix.ApplicationLayer
                 RepositoryManager.OnLoginFailed -= HandleLoginFailed;
             }
         }
-    }
+    }
 }

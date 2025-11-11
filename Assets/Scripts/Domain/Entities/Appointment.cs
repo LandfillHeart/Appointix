@@ -8,4 +8,8 @@ public class Appointment
 	public int idDottore;
 	public DateTime inizioApp;
 	public DateTime fineApp;
+
+	public string nomeDottore;
+	public string cognomeDottore;
+	public string specDottore;
 }

@@ -187,15 +187,25 @@ app.get('/api/prenotazioni/dottore/:id', async (req, res) => {
 
 // GET id paziente prenotazioni
 app.get('/api/prenotazioni/paziente/:id', async (req, res) => {
-  try {
-    const [tasks] = await db.execute('SELECT * FROM prenotazione WHERE idPaziente = ?', [req.params.id]);
-    if (tasks.length === 0) {
-      return res.status(404).json({ error: 'Prenotazione non trovata' });
-    }
-    res.json(tasks[0]);
-  } catch (error) {
-    res.status(500).json({ error: 'Errore nel recupero della prenotazione', details: error.message });
-  }
+  try {
+    const query = `
+      SELECT 
+        p.*, 
+        d.nome AS nomeDottore, 
+        d.cognome AS cognomeDottore,
+        d.specializzazione AS specDottore
+      FROM prenotazione p
+      JOIN dottore d ON p.idDottore = d.id
+      WHERE p.idPaziente = ?
+      ORDER BY p.inizioApp ASC
+    `;
+    const [appointments] = await db.execute(query, [req.params.id]);
+    
+    res.json(appointments); // <-- CORRETTO: restituisce TUTTI gli appuntamenti
+
+  } catch (error) {
+    res.status(500).json({ error: 'Errore nel recupero delle prenotazioni', details: error.message });
+  }
 });
 
   // =========================

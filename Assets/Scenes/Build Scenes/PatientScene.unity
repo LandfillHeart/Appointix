@@ -321,6 +321,17 @@ MonoBehaviour:
   userName: {fileID: 0}
   userSurname: {fileID: 0}
   userEmail: {fileID: 0}
+--- !u!114 &369233849 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6444136197216797472, guid: 91a4fae953490c50f836636565f1fa99, type: 3}
+  m_PrefabInstance: {fileID: 1815088381}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &826401385
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,9 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d441e93d4ff2f848b420e2317e74d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Appointix.ApplicationLayer.AppContext
-  patientsJson: {fileID: 0}
-  connectedToDB: 0
   userID: 0
+  patientsJson: {fileID: 0}
 --- !u!4 &826401388
 Transform:
   m_ObjectHideFlags: 0
@@ -574,6 +584,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2925862250575240452, guid: 91a4fae953490c50f836636565f1fa99, type: 3}
+      propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925862250575240452, guid: 91a4fae953490c50f836636565f1fa99, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3658812439244502753, guid: 91a4fae953490c50f836636565f1fa99, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1242.8358
@@ -718,6 +736,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6516890525932186847}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1389993669896242218, guid: 91a4fae953490c50f836636565f1fa99, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1815088388}
     - targetCorrespondingSourceObject: {fileID: 5953105126227729327, guid: 91a4fae953490c50f836636565f1fa99, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1815088385}
@@ -767,7 +788,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -785,6 +806,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1389993669896242218, guid: 91a4fae953490c50f836636565f1fa99, type: 3}
   m_PrefabInstance: {fileID: 1815088381}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1815088388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815088387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463e4cae085fba2419350e4a991245a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatientAppointmentController
+  appointmentRowPrefab: {fileID: 4337647638283755391, guid: 6b179555476182e4db3dbdca95f70c07, type: 3}
+  container: {fileID: 1815088386}
+  patientNameText: {fileID: 369233849}
 --- !u!224 &16819923863752091
 RectTransform:
   m_ObjectHideFlags: 0
